@@ -23,7 +23,7 @@ def json_case(path,items):
     tmp=path.with_suffix(".tmp");tmp.write_bytes(b'{"interrupted":')
     assert path.read_bytes()==snapshot
     tmp.unlink()
-    restored=path.with_suffix(".backup");restored.write_bytes(snapshot)
+    restored=path.with_name(path.name+".backup");restored.write_bytes(snapshot)
     assert json.loads(restored.read_bytes())==read
     return {"backend":"json-snapshot","rows":len(items),"write_seconds":elapsed,"bytes":len(snapshot),
             "scope":"single writer; interrupted temporary file and restore checked; concurrent writers not supported"}
@@ -52,7 +52,7 @@ def sqlite_case(path,items):
                 else:raise AssertionError("concurrent writer not blocked")
             finally:db.rollback()
         finally:other.close()
-        restored=sqlite3.connect(path.with_suffix(".backup"))
+        restored=sqlite3.connect(path.with_name(path.name+".backup"))
         try:
             db.backup(restored)
             assert dict(restored.execute("SELECT id,payload FROM history"))==dict(items)

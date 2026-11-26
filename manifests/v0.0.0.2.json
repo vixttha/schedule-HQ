@@ -19,8 +19,8 @@
       "label": "Exclusive publication decision",
       "documented_in": [
         {
-          "path": "docs/architecture/contracts.md",
-          "anchor": "Lease decision requires independently authenticated actor, owner authorization, matching issue/repository/head/fence, unexpired lease, no competing claim and atomic host enforcement. It is not a lease acquisition. Dedup keys exclude execution timestamps; durable cursor updates only after verified delivery in the associated conversation. Recovery never automatically retries; a verified unchanged head permits reauthorization only. UTC slots are bounded; local timestamps use observed offset, not inferred DST or timezone rules. NOT OBSERVED is not proof of a missed run. Actual host behavior remains unqualified. Schema files are structural; Python semantic validation is mandatory."
+          "path": "prompts/roles/development.md",
+          "anchor": "Recheck exclusive ownership and expected ref immediately before publication; no blind retry of uncertain writes."
         }
       ],
       "implemented_in": [
@@ -47,8 +47,8 @@
       "label": "Material-change fingerprint",
       "documented_in": [
         {
-          "path": "docs/architecture/contracts.md",
-          "anchor": "Lease decision requires independently authenticated actor, owner authorization, matching issue/repository/head/fence, unexpired lease, no competing claim and atomic host enforcement. It is not a lease acquisition. Dedup keys exclude execution timestamps; durable cursor updates only after verified delivery in the associated conversation. Recovery never automatically retries; a verified unchanged head permits reauthorization only. UTC slots are bounded; local timestamps use observed offset, not inferred DST or timezone rules. NOT OBSERVED is not proof of a missed run. Actual host behavior remains unqualified. Schema files are structural; Python semantic validation is mandatory."
+          "path": "prompts/roles/handoff.md",
+          "anchor": "Escalate only changed blockers; do not claim the lane."
         }
       ],
       "implemented_in": [
@@ -75,8 +75,8 @@
       "label": "Ambiguous publication recovery",
       "documented_in": [
         {
-          "path": "docs/architecture/contracts.md",
-          "anchor": "Lease decision requires independently authenticated actor, owner authorization, matching issue/repository/head/fence, unexpired lease, no competing claim and atomic host enforcement. It is not a lease acquisition. Dedup keys exclude execution timestamps; durable cursor updates only after verified delivery in the associated conversation. Recovery never automatically retries; a verified unchanged head permits reauthorization only. UTC slots are bounded; local timestamps use observed offset, not inferred DST or timezone rules. NOT OBSERVED is not proof of a missed run. Actual host behavior remains unqualified. Schema files are structural; Python semantic validation is mandatory."
+          "path": "prompts/roles/development.md",
+          "anchor": "Recheck exclusive ownership and expected ref immediately before publication; no blind retry of uncertain writes."
         }
       ],
       "implemented_in": [
@@ -103,8 +103,8 @@
       "label": "Nominal UTC schedule",
       "documented_in": [
         {
-          "path": "docs/architecture/contracts.md",
-          "anchor": "Lease decision requires independently authenticated actor, owner authorization, matching issue/repository/head/fence, unexpired lease, no competing claim and atomic host enforcement. It is not a lease acquisition. Dedup keys exclude execution timestamps; durable cursor updates only after verified delivery in the associated conversation. Recovery never automatically retries; a verified unchanged head permits reauthorization only. UTC slots are bounded; local timestamps use observed offset, not inferred DST or timezone rules. NOT OBSERVED is not proof of a missed run. Actual host behavior remains unqualified. Schema files are structural; Python semantic validation is mandatory."
+          "path": "config/schedule.json",
+          "anchor": "\"timezone\": \"Etc/UTC\","
         }
       ],
       "implemented_in": [

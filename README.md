@@ -15,7 +15,7 @@ python tools/check.py
 python -m unittest discover -s tests -v
 ```
 
-The first command reports `PASS: template contract; no live scheduler execution asserted`. The second runs the five foundation regression tests. The template is disabled by default; no task, credential, database or paid runner is needed for these offline checks.
+The first command reports `PASS: strict offline template and receipt contract; no live scheduler execution asserted`. The second runs the foundation and architecture regression suites. The template is disabled by default; no task, credential, database or paid runner is needed for these offline checks.
 
 ## How it works
 
@@ -65,3 +65,5 @@ This candidate preserves the published .1 foundation. It is not a GitHub Release
 ## Architecture candidate
 
 [Canonical schedule](config/schedule.json), [dependency lock](config/dependencies.lock.json), [approved decisions](docs/decisions/v0.0.0.2.md), [migration contract](docs/migrations/v0.0.0.2.md). Legacy root paths are retained for compatibility.
+
+[Offline defensive contracts](docs/architecture/contracts.md) cover authority decisions, duplicate reporting, ambiguous-write recovery, UTC slots, privacy projection and portable paths. No live host enforcement is claimed.

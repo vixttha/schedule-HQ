@@ -48,8 +48,8 @@
     },
     {
       "from": "tests/test_contract.py",
-      "to": "tests/contract/test_schedule.py",
-      "action": "move tests and retain behavior"
+      "to": "tests/test_contract.py",
+      "action": "retain compatibility suite; add modular suites"
     },
     {
       "from": ".github/workflows/verify-template.yml",
@@ -85,6 +85,10 @@
     "prompts/common.md",
     "prompts/roles/",
     "dashboard/index.html",
-    "tools/check.py"
+    "tools/check.py",
+    "src/schedule_hq/policy/",
+    "src/schedule_hq/evidence/",
+    "src/schedule_hq/adapters/",
+    "src/schedule_hq/contracts/paths.py"
   ]
 }

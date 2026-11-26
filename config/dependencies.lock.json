@@ -33,5 +33,12 @@
       "tested_sha": "0865cb3302b8a285181c510f28db5d36cabfeee5",
       "proof_run": 45786724761
     }
+  },
+  "readme_hq": {
+    "source_repository": "vixttha/README-HQ",
+    "source_sha": "43e29074099742a2c73741176286a44ccdf861a1",
+    "adoption_sha": "f1ab0fa8634ce3a6a8a83fc50c29a051d177a62e",
+    "proof_run": 45790981199,
+    "mode": "pinned_remote_read_only"
   }
 }

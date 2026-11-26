@@ -64,6 +64,8 @@ def validate_receipt(r):
     timestamp(r["scheduled_at"])
     for key in ("started_at","completed_at"):
         if r[key] is not None: timestamp(r[key])
+    if r["started_at"] is not None:
+        require(timestamp(r["started_at"])>=timestamp(r["scheduled_at"]),"start precedes schedule")
     if r["completed_at"] is not None:
         require(r["started_at"] is not None and timestamp(r["completed_at"])>=timestamp(r["started_at"]),"invalid execution interval")
     for key in ("source_head","base_sha","proposed_merge_sha","actual_merge_sha"):
@@ -76,5 +78,7 @@ def validate_receipt(r):
     require(all(PROOF.fullmatch(x) for x in r["proof_links"]),"invalid public proof URL")
     require(safe_text(r["next_action"]),"invalid next action")
     if r["example"]: require(r["classification"]=="NOT RUN" and r["started_at"] is None and r["completed_at"] is None and not r["proof_links"],"synthetic evidence prohibited")
+    if r["classification"]=="NOT RUN":
+        require(r["started_at"] is None and r["completed_at"] is None,"NOT RUN cannot contain execution times")
     if r["classification"]=="PASS":
         require(not r["example"] and r["source_head"] and r["proof_links"] and r["started_at"] and r["completed_at"],"PASS needs exact evidence and actual times")

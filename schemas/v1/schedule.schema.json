@@ -14,11 +14,12 @@
   ],
   "properties": {
     "schema_version": {
-      "const": 1
+      "const": 1,
+      "type": "integer"
     },
     "checkpoint": {
       "type": "string",
-      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$"
+      "pattern": "^v(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*)){3}$"
     },
     "display_name": {
       "type": "string",
@@ -84,7 +85,119 @@
             "minLength": 1
           }
         }
-      }
+      },
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "id": {
+                "const": "development"
+              },
+              "cron": {
+                "const": "0 * * * *"
+              },
+              "authority": {
+                "const": "write-if-authorized"
+              }
+            },
+            "required": [
+              "id",
+              "cron",
+              "authority"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "id": {
+                "const": "handoff"
+              },
+              "cron": {
+                "const": "15 * * * *"
+              },
+              "authority": {
+                "const": "read-only"
+              }
+            },
+            "required": [
+              "id",
+              "cron",
+              "authority"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "id": {
+                "const": "verification"
+              },
+              "cron": {
+                "const": "30 * * * *"
+              },
+              "authority": {
+                "const": "read-only"
+              }
+            },
+            "required": [
+              "id",
+              "cron",
+              "authority"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "id": {
+                "const": "audit"
+              },
+              "cron": {
+                "const": "45 * * * *"
+              },
+              "authority": {
+                "const": "read-only"
+              }
+            },
+            "required": [
+              "id",
+              "cron",
+              "authority"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "id": {
+                "const": "release"
+              },
+              "cron": {
+                "const": "0 */4 * * *"
+              },
+              "authority": {
+                "const": "read-only"
+              }
+            },
+            "required": [
+              "id",
+              "cron",
+              "authority"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
     }
   }
 }

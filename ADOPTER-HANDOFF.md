@@ -1,8 +1,10 @@
-# Schedule HQ .2 validation handoff
+# Schedule HQ .2 qualification handoff
 
-PR #3 now targets main. Exact source ab6235f64c45c3739bcd2b138da0824e5082e8ef, base 1fe825f284aa36e30b31f8f7a927b3942d58b9c5, proposed merge 55dd713d8e6de501006df76bab3f7dfee27fde68; source and proposed merge tree 8b943efd30fbbb1301a69790c6dab4942939807d identical; no actual merge. Source and PR 51/51 tests each platform plus .1 rollback 5/5 each. README HQ receipts downloaded; local navigation and first-action route passed; external refs and smoke spec unchecked by reader, CLI executed separately in CI. Catalog 10+10 structural check; graph ZIP/graph/archive/receipt hashes verified, seven feature lookups. Pins at 4d2c1c5213c1c00d8bd6693a79f428d269224399. No independent agent trial or final owner acceptance; active stage Internal Auditor. No persistent host lease asserted. Main unchanged. Issue #2 stays open.
+Source 62731879202e145c32ce4517f693f7568f5e20d1; main 1fe825f284aa36e30b31f8f7a927b3942d58b9c5; proposed merge 21d671db27b241962d6ab0dfd831fcc307060da9; actual merge absent. Source and merge trees identical (0742b31bffbdf90ba7302d4836ab17e11c730b22). 58/58 regression methods across Ubuntu and Windows for both source and proposed merge; 28 separate schema cases per checkout; 5/5 historical rollback per OS/checkout; 308 executions. Eight source/PR jobs passed. Provenistem ten existing features updated, structural catalog passed. Current Veraphify 61 nodes/92 edges, ten feature lookups, downloaded hashes and Git blob identities verified. All three historical/current archives retained permanently at 1454e1269c5b3cebc48e60c5be871237a7e33d77; temporary write-capable preservation workflow removed. No actual repository rename, live host enforcement or independent auditor acceptance claimed. No merge/closure/release. Language study is a proposal only; no new runtime adopted.
 
-https://github.com/vixttha/schedule-HQ/actions/runs/45792557636/attempts/1
-https://github.com/vixttha/schedule-HQ/actions/runs/45792567307/attempts/1
-https://github.com/vixttha/schedule-HQ/actions/runs/45792728030/attempts/1
-https://github.com/vixttha/schedule-HQ/actions/runs/45792806183/attempts/1
+https://github.com/vixttha/schedule-HQ/actions/runs/45794708618
+https://github.com/vixttha/schedule-HQ/actions/runs/45794715404
+https://github.com/vixttha/schedule-HQ/actions/runs/45795389031
+https://github.com/vixttha/schedule-HQ/actions/runs/45795484450
+https://github.com/vixttha/schedule-HQ/actions/runs/45795520897
+https://github.com/vixttha/schedule-HQ/actions/runs/45795736361

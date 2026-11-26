@@ -3,12 +3,19 @@
   "active": {
     "issue": 2,
     "version": "v0.0.0.2",
-    "phase": "Validate",
-    "next_action": "Verify current exact candidate source and proposed-merge public runner evidence; no integration.",
+    "phase": "Internal Auditor",
+    "next_action": "Review exact mechanical evidence. Source and PR 58 tests per OS plus 28 schema cases each and 5 rollback tests per OS. Three archive ZIPs preserved, current graph 61 nodes/92 relationships and 10 features. Actual rename, host enforcement, independent review and final owner acceptance remain open. No option 15 or merge.",
     "fix_sha": "62731879202e145c32ce4517f693f7568f5e20d1",
     "candidate_sha": "62731879202e145c32ce4517f693f7568f5e20d1",
     "pull_request": 3,
-    "evidence": []
+    "evidence": [
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45794708618",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45794715404",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45795389031",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45795484450",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45795520897",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45795736361"
+    ]
   },
   "history": [
     {

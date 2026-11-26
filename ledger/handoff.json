@@ -3,17 +3,12 @@
   "active": {
     "issue": 2,
     "version": "v0.0.0.2",
-    "phase": "Internal Auditor",
-    "next_action": "Mechanical source/PR checks and graph/catalog receipts verified. Independent final review pending; no host enforcement, real repository rename, full privacy ingress, artifact permanent bytes, or owner acceptance asserted. Head must decide remaining gates; do not merge.",
-    "fix_sha": "ab6235f64c45c3739bcd2b138da0824e5082e8ef",
-    "candidate_sha": "ab6235f64c45c3739bcd2b138da0824e5082e8ef",
-    "pull_request": 3,
-    "evidence": [
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45792557636/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45792567307/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45792728030/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45792806183/attempts/1"
-    ]
+    "phase": "Worker",
+    "next_action": "Owner requests resolution of remaining qualification gaps before option 15. Return existing issue #2 to Worker for bounded offline schema, privacy and stable identity qualification; previous mechanical evidence retained, no independent acceptance asserted, no new runtime or live rename, no merge. Manual serial owner-authorized rework; no persistent host lease asserted.",
+    "fix_sha": null,
+    "candidate_sha": null,
+    "pull_request": null,
+    "evidence": []
   },
   "history": [
     {
@@ -29,6 +24,26 @@
       },
       "disposition": "rework",
       "decision": "Owner-approved options 1–14; reconcile with populated main",
+      "merged_sha": null
+    },
+    {
+      "handoff": {
+        "issue": 2,
+        "version": "v0.0.0.2",
+        "phase": "Internal Auditor",
+        "next_action": "Mechanical source/PR checks and graph/catalog receipts verified. Independent final review pending; no host enforcement, real repository rename, full privacy ingress, artifact permanent bytes, or owner acceptance asserted. Head must decide remaining gates; do not merge.",
+        "fix_sha": "ab6235f64c45c3739bcd2b138da0824e5082e8ef",
+        "candidate_sha": "ab6235f64c45c3739bcd2b138da0824e5082e8ef",
+        "pull_request": 3,
+        "evidence": [
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45792557636/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45792567307/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45792728030/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45792806183/attempts/1"
+        ]
+      },
+      "disposition": "rework",
+      "decision": "Owner requests resolution of remaining qualification gaps before option 15. Return existing issue #2 to Worker for bounded offline schema, privacy and stable identity qualification; previous mechanical evidence retained, no independent acceptance asserted, no new runtime or live rename, no merge. Manual serial owner-authorized rework; no persistent host lease asserted.",
       "merged_sha": null
     }
   ]

@@ -49,3 +49,11 @@ def ingest(payload,*,authenticated=False):
         return e
     except (ValueError,TypeError,OverflowError,RecursionError):
         raise ValueError("invalid observation") from None
+
+def check_run_slot(event, seen):
+    """One provider/task run identity has exactly one nominal slot, across attempts."""
+    receipt=event["receipt"]
+    key=(event["provider"],receipt["task_id"],event["run_id"])
+    slot=receipt["scheduled_at"]
+    require(key not in seen or seen[key]==slot,"contradictory host run slot")
+    seen[key]=slot

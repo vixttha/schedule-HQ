@@ -7,7 +7,7 @@ import hashlib,json,os,tempfile
 from contextlib import contextmanager
 from pathlib import Path
 from schedule_hq.contracts.validation import keys,require,unique,bad_constant
-from schedule_hq.history.events import canonical,event_key,event_digest,ingest,validate_event,IDENT
+from schedule_hq.history.events import canonical,event_key,event_digest,ingest,validate_event,IDENT,check_run_slot
 from schedule_hq.policy.reporting import fingerprint
 from schedule_hq.contracts.validation import TASKS,timestamp,SHA,safe_text
 from schedule_hq.policy.authority import may_publish
@@ -54,7 +54,7 @@ class History:
                 k=event_key(e)
                 require(k not in seen and row["key"]==k and row["digest"]==event_digest(e),"invalid event record")
                 seen.add(k)
-                self._check_run_slot(e,run_slots)
+                check_run_slot(e,run_slots)
             self._validate_delivery(data)
             self._validate_writes(data)
             return data
@@ -99,11 +99,11 @@ class History:
             data=self._read()
             run_slots={}
             for row in data["events"]:
-                self._check_run_slot(row["event"],run_slots)
+                check_run_slot(row["event"],run_slots)
                 if row["key"]==k:
                     require(row["digest"]==d,"conflicting observation")
                     return "DUPLICATE"
-            self._check_run_slot(e,run_slots)
+            check_run_slot(e,run_slots)
             data["events"].append({"key":k,"digest":d,"event":e})
             self._write(data)
             return "ADDED"
@@ -133,18 +133,30 @@ class History:
         require(type(delivery) is dict and set(delivery)<=set(TASKS),"invalid delivery state")
         require(binding is not None or not delivery,"missing binding")
         events={row["key"]:row["event"] for row in data["events"]}
+        used_acks=set();used_intents=set()
         for task,state in delivery.items():
-            keys(state,{"pending","last","highwater"})
-            for field in ("pending","last","highwater"):
-                record=state[field]
-                if record is None:continue
+            keys(state,{"pending","last","highwater","acknowledgments"})
+            def validate_record(record, *, acknowledged):
                 keys(record,{"event_key","intent","fingerprint","observed_at","ack"})
                 k=record["event_key"];require(type(k) is str and k in events,"missing delivery event")
                 e=events[k]
                 require(e["receipt"]["task_id"]==task and e["provenance"]=="authenticated","invalid delivery event")
                 ack=record["ack"]
-                require(ack is None if field!="last" else type(ack) is str and IDENT.fullmatch(ack) is not None,"invalid delivery acknowledgment")
+                require((type(ack) is str and IDENT.fullmatch(ack) is not None) if acknowledged else ack is None,"invalid delivery acknowledgment")
                 require(record==self._record(e,binding,ack),"invalid delivery record")
+            history=state["acknowledgments"]
+            require(type(history) is list,"invalid acknowledgment history")
+            prior=None
+            for record in history:
+                validate_record(record,acknowledged=True)
+                require(record["ack"] not in used_acks and record["intent"] not in used_intents,"duplicate historical acknowledgment")
+                require(prior is None or timestamp(record["observed_at"])>timestamp(prior["observed_at"]),"nonmonotonic acknowledgment history")
+                used_acks.add(record["ack"]);used_intents.add(record["intent"]);prior=record
+            require(state["last"]==prior,"last acknowledgment differs from history")
+            for field in ("pending","highwater"):
+                record=state[field]
+                if record is None:continue
+                validate_record(record,acknowledged=False)
             high=state["highwater"]
             require(high is not None,"missing observation highwater")
             if state["last"]:
@@ -166,7 +178,7 @@ class History:
             e=next((row["event"] for row in data["events"] if row["key"]==key),None)
             if e is None or e["provenance"]!="authenticated":return {"decision":"BLOCKED"}
             task=e["receipt"]["task_id"]
-            state=data["delivery"].get(task,{"pending":None,"last":None,"highwater":None})
+            state=data["delivery"].get(task,{"pending":None,"last":None,"highwater":None,"acknowledgments":[]})
             if state["pending"] is not None:return {"decision":"BLOCKED"}
             record=self._record(e,binding)
             last=state["last"];high=state["highwater"]
@@ -188,23 +200,20 @@ class History:
         with self._exclusive():
             data=self._read()
             require(data["binding"]==binding,"delivery binding mismatch")
-            for state in data["delivery"].values():
-                last=state["last"];pending=state["pending"]
-                if last and last["intent"]==intent:
-                    require(last["ack"]==ack,"conflicting acknowledgment")
+            history=[record for state in data["delivery"].values() for record in state["acknowledgments"]]
+            for record in history:
+                if record["intent"]==intent:
+                    require(record["ack"]==ack,"conflicting acknowledgment")
                     return "DUPLICATE"
+            require(not any(record["ack"]==ack for record in history),"acknowledgment already used")
+            for state in data["delivery"].values():
+                pending=state["pending"]
                 if pending and pending["intent"]==intent:
-                    require(not any(s["last"] and s["last"]["ack"]==ack for s in data["delivery"].values()),"acknowledgment already used")
-                    state["last"]=pending|{"ack":ack};state["pending"]=None
+                    record=pending|{"ack":ack}
+                    state["acknowledgments"].append(record)
+                    state["last"]=record;state["pending"]=None
                     self._write(data);return "ACKNOWLEDGED"
             raise ValueError("unknown delivery intent")
-
-    @staticmethod
-    def _check_run_slot(e,seen):
-        r=e["receipt"];key=(e["provider"],r["task_id"],e["run_id"])
-        slot=r["scheduled_at"]
-        require(key not in seen or seen[key]==slot,"contradictory host run slot")
-        seen[key]=slot
 
     def _validate_writes(self,data):
         rows=data["writes"];require(type(rows) is list,"invalid write journal")

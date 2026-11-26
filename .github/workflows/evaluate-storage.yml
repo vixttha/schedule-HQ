@@ -1,11 +1,9 @@
 name: Schedule HQ storage evaluation
 on:
   push:
-    branches: ['plan/checkpoint-v*']
-    paths: ['tools/evaluate_storage.py', '.github/workflows/evaluate-storage.yml']
+    branches: ['plan/checkpoint-v*', main]
   pull_request:
     branches: [main]
-    paths: ['tools/evaluate_storage.py', '.github/workflows/evaluate-storage.yml']
 permissions:
   contents: read
 jobs:

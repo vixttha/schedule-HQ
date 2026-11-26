@@ -1,7 +1,7 @@
 """Reconcile bounded nominal slots against scoped observations, never infer failures."""
 from datetime import timedelta
 from schedule_hq.contracts.validation import require,timestamp
-from schedule_hq.history.events import validate_event,event_key,event_digest
+from schedule_hq.history.events import validate_event,event_key,event_digest,check_run_slot
 from schedule_hq.policy.scheduling import slots,observed_state
 
 def reconcile(events,*,repository_id,installation,provider,task,start,end,now,grace,
@@ -20,11 +20,12 @@ def reconcile(events,*,repository_id,installation,provider,task,start,end,now,gr
         k=event_key(e)
         require(k not in unique or event_digest(unique[k])==event_digest(e),"conflicting observation")
         unique[k]=e
-    byslot={}
+    byslot={};run_slots={}
     for e in unique.values():
         if simulation:
             if e["provenance"]!="synthetic":continue
         elif not source_verified or e["provenance"]!="authenticated":continue
+        check_run_slot(e,run_slots)
         s=e["receipt"]["scheduled_at"]
         if s not in expected:continue
         runs=byslot.setdefault(s,{})

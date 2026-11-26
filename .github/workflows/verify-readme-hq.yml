@@ -8,6 +8,7 @@ jobs:
   reader:
     if: github.event.repository.visibility == 'public' && github.event.repository.private == false
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
@@ -18,6 +19,7 @@ jobs:
           repository: vixttha/README-HQ
           ref: 43e29074099742a2c73741176286a44ccdf861a1
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
         with:
           python-version: '3.12'

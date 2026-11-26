@@ -1,5 +1,14 @@
 {
   "schema_version": 1,
-  "active": null,
+  "active": {
+    "issue": 2,
+    "version": "v0.0.0.2",
+    "phase": "Worker",
+    "next_action": "Owner-approved D-001–010; bounded first migration: canonical registry, versioned contracts, compatibility and regression tests on plan/checkpoint-v0.0.0.2. No host activation or integration. Approval issue comment 7187574577.",
+    "fix_sha": null,
+    "candidate_sha": null,
+    "pull_request": null,
+    "evidence": []
+  },
   "history": []
 }

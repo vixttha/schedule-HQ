@@ -29,6 +29,7 @@ jobs:
           l=json.loads(Path('ledger/issue-versions.json').read_text())
           assert {1:'v0.0.0.1',2:'v0.0.0.2'}.items() <= {r['issue']:r['version'] for r in l['issues']}.items()
           h=json.loads(Path('ledger/handoff.json').read_text())
-          assert h['active'] is None
-          print('PASS: all pinned package hashes, preserved historical assignments, no active lease')
+          from tools.session import validate_handoff
+          validate_handoff(h,l)
+          print('PASS: all pinned package hashes, preserved historical assignments, handoff schema valid')
           PY

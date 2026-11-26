@@ -16,7 +16,7 @@
     {
       "issue": 2,
       "version": "v0.0.0.2",
-      "state": "assigned",
+      "state": "in_progress",
       "acceptance": [
         "Freeze exact v0.0.0.1 revisions, complete file inventory and outstanding evidence without rewriting prior assignment.",
         "Approve folder ownership, path map, stable entrypoints, schema evolution and rollback before moving runtime code.",

@@ -22,7 +22,7 @@ def observed_state(scheduled,started,completed,now,grace_seconds):
     if completed is not None and started is None: raise ValueError("completion without start")
     if started is not None:
         a=timestamp(started)
-        if a<s or a>n: raise ValueError("invalid start")
+        if a>n: raise ValueError("invalid start")
         if completed is not None:
             b=timestamp(completed)
             if not a<=b<=n: raise ValueError("invalid completion")

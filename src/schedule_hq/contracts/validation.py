@@ -54,7 +54,7 @@ def validate(cfg):
         require(safe_text(t["title"]) and safe_text(t["purpose"]),"invalid text")
     require(seen==set(TASKS),"task set mismatch")
 def timestamp(value):
-    require(type(value) is str and re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z",value) is not None,"expected UTC timestamp")
+    require(type(value) is str and re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z",value) is not None,"expected UTC timestamp")
     return datetime.fromisoformat(value[:-1]+"+00:00")
 def validate_receipt(r):
     keys(r,RECEIPT_KEYS)
@@ -64,8 +64,6 @@ def validate_receipt(r):
     timestamp(r["scheduled_at"])
     for key in ("started_at","completed_at"):
         if r[key] is not None: timestamp(r[key])
-    if r["started_at"] is not None:
-        require(timestamp(r["started_at"])>=timestamp(r["scheduled_at"]),"start precedes schedule")
     if r["completed_at"] is not None:
         require(r["started_at"] is not None and timestamp(r["completed_at"])>=timestamp(r["started_at"]),"invalid execution interval")
     for key in ("source_head","base_sha","proposed_merge_sha","actual_merge_sha"):

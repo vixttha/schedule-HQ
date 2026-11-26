@@ -23,7 +23,8 @@
     },
     "display_name": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "maxLength": 2000
     },
     "target_repository": {
       "const": "OWNER/REPO"
@@ -63,7 +64,8 @@
           },
           "title": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "maxLength": 2000
           },
           "cron": {
             "enum": [
@@ -82,7 +84,8 @@
           },
           "purpose": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "maxLength": 2000
           }
         }
       },

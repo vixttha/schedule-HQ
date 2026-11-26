@@ -1,0 +1,52 @@
+name: Schedule HQ storage evaluation
+on:
+  push:
+    branches: ['plan/checkpoint-v*']
+    paths: ['tools/evaluate_storage.py', '.github/workflows/evaluate-storage.yml']
+  pull_request:
+    branches: [main]
+    paths: ['tools/evaluate_storage.py', '.github/workflows/evaluate-storage.yml']
+permissions:
+  contents: read
+jobs:
+  storage:
+    if: github.event.repository.visibility == 'public' && github.event.repository.private == false
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+        with:
+          python-version: '3.12'
+      - run: python tools/evaluate_storage.py --output storage-study.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: storage-study-${{ matrix.os }}
+          path: storage-study.json
+          if-no-files-found: error
+  postgres:
+    if: github.event.repository.visibility == 'public' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+        with:
+          python-version: '3.12'
+      - name: Use only runner-local preinstalled PostgreSQL
+        run: |
+          sudo systemctl start postgresql
+          python tools/evaluate_storage.py --postgres --output storage-postgres.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: storage-study-postgres
+          path: storage-postgres.json
+          if-no-files-found: error

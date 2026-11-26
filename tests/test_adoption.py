@@ -86,3 +86,24 @@ class Adoption(unittest.TestCase):
         (self.repo/".schedule-hq-removed").mkdir()
         with self.assertRaises(ValueError):uninstall(self.repo,p,apply=True)
         self.assertTrue((self.repo/".schedule-hq").exists())
+
+    def test_forged_or_modified_bundle_refused(self):
+        from schedule_hq.adoption import encoded
+        p=self.plan()
+        for q in (p|{"unexpected.md":b"private"},p|{"prompts/development.md":b"tampered"},p|{"manifest.json":b"{}"}):
+            with self.assertRaises(ValueError):install(self.repo,q)
+        self.assertFalse((self.repo/".schedule-hq").exists())
+    def test_interrupted_install_does_not_change_checkout(self):
+        from unittest.mock import patch
+        p=self.plan()
+        with patch("schedule_hq.adoption.Path.rename",side_effect=OSError("synthetic interruption")):
+            with self.assertRaises(OSError):install(self.repo,p)
+        self.assertFalse((self.repo/".schedule-hq").exists())
+        self.assertFalse(list(self.repo.glob(".schedule-hq-stage-*")))
+        self.assertEqual((self.repo/"README.md").read_text(),"fixture")
+    def test_credential_bearing_remote_refused(self):
+        p=self.plan();self.git("remote","set-url","origin","https://synthetic-secret@github.com/fixture/test-repo.git")
+        with self.assertRaisesRegex(ValueError,"origin locator mismatch"):install(self.repo,p)
+    def test_standalone_prompt_has_no_missing_workflow_reference(self):
+        for k,v in self.plan().items():
+            if k.startswith("prompts/"):self.assertNotIn("Follow WORKFLOW.md",v.decode())

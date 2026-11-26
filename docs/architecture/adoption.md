@@ -16,3 +16,5 @@ Before uninstall, pause/remove any live host tasks manually. Re-run the same sou
 ## Qualification boundary
 
 The public-runner pilot installs into a separate local clone of this exact public repository revision, verifies origin locator and branch, checks dry-run rollback and moves the verified bundle to a backup without changing tracked files or pushing a ref. This is an isolated checkout, not an independently adopted second remote repository. No host-side credential scope, delivery, or independent review is inferred from these tests.
+
+Bundle checksums detect accidental drift and verify local bytes against the regenerated pinned source; they are not signatures or proof of host permission. The installer rejects extra files, changed manifest data, credentials embedded in origin, and interrupted local installation leaves the original checkout unchanged. No host task or private conversation identifier is stored by the bundle.

@@ -2,7 +2,7 @@
 import hashlib,json,os,re,shutil,subprocess,tempfile
 from pathlib import Path
 from zoneinfo import ZoneInfo,ZoneInfoNotFoundError
-from schedule_hq.contracts.validation import load,validate,require,SHA
+from schedule_hq.contracts.validation import validate,require,SHA,unique,bad_constant
 from schedule_hq.contracts.identity import NAME
 from schedule_hq.contracts.paths import unique_paths
 
@@ -42,7 +42,7 @@ def bundle(source,*,repository,repository_id,timezone="Etc/UTC",minutes=None,rel
         except (OSError,subprocess.SubprocessError,UnicodeError):raise ValueError("missing pinned source file") from None
     template=json.loads(read("config/schedule.json"));validate(template)
     rules="Follow the canonical Head → Worker → Validate → Internal Auditor → Head handoff. All five pilot roles are read-only. Distinguish scheduler execution, source, proposed merge, actual merge, installed release, artifact metadata versus bytes, and mechanical versus independent review. No automatic activation or authority transfer."
-    common=read("prompts/common.md").strip().replace("OWNER/REPO",repository)
+    common=read("prompts/common.md").strip().replace("OWNER/REPO",repository).replace("Follow WORKFLOW.md.","Follow the operating rules below.")
     tasks=[];files={}
     for t in template["tasks"]:
         ident=t["id"];minute=minutes[ident]
@@ -65,13 +65,46 @@ def bundle(source,*,repository,repository_id,timezone="Etc/UTC",minutes=None,rel
 def unsafe(path):
     return path.is_symlink() or (hasattr(path,"is_junction") and path.is_junction())
 
+def validate_bundle(files):
+    """Check the bounded public installation format, not authority or signature authenticity."""
+    expected={"installation.json","README.md","manifest.json",*("prompts/"+t+".md" for t in DEFAULT_MINUTES)}
+    require(type(files) is dict and set(files)==expected,"unknown installation paths")
+    unique_paths(files)
+    require(all(type(data) is bytes and len(data)<=65536 for data in files.values()),"invalid installation bytes")
+    def decode(name):
+        return json.loads(files[name].decode("utf-8"),object_pairs_hook=unique,parse_constant=bad_constant)
+    cfg=decode("installation.json");manifest=decode("manifest.json")
+    require(type(cfg) is dict and set(cfg)=={"schema_version","source_sha","repository","repository_id","report_timezone","schedule_timezone","conversation_binding","enabled","mode","tasks"},"invalid installation registry")
+    require(type(cfg["schema_version"]) is int and cfg["schema_version"]==1 and type(cfg["source_sha"]) is str and SHA.fullmatch(cfg["source_sha"]) is not None,"invalid source identity")
+    require(cfg["enabled"] is False and cfg["mode"]=="read-only-pilot" and cfg["conversation_binding"]=="existing-associated-conversation" and cfg["schedule_timezone"]=="Etc/UTC","installation must remain disabled and read-only")
+    repo=cfg["repository"]
+    require(type(repo) is str and NAME.fullmatch(repo) is not None and repo!="OWNER/REPO" and repo.split("/")[-1] not in (".",".."),"invalid target")
+    require(type(cfg["repository_id"]) is int and 1<=cfg["repository_id"]<=9007199254740991,"invalid repository ID")
+    zone(cfg["report_timezone"])
+    tasks=cfg["tasks"];require(type(tasks) is list and len(tasks)==5,"invalid task count")
+    seen=set();hourly=set()
+    for t in tasks:
+        require(type(t) is dict and set(t)=={"id","title","cron","authority"},"invalid task fields")
+        ident=t["id"]
+        require(type(ident) is str and ident in DEFAULT_MINUTES and ident not in seen and t["authority"]=="read-only","invalid role")
+        require(type(t["title"]) is str and t["title"].isprintable() and 0<len(t["title"])<=2000,"invalid role title")
+        cron=t["cron"];require(type(cron) is str,"invalid schedule")
+        if ident=="release":match=re.fullmatch(r"([0-9]|[1-5][0-9]) \*/(2|3|4|6|8|12|24) \* \* \*",cron)
+        else:match=re.fullmatch(r"([0-9]|[1-5][0-9]) \* \* \* \*",cron)
+        require(match is not None,"invalid cadence")
+        if ident!="release":
+            require(match.group(1) not in hourly,"duplicate hourly slot");hourly.add(match.group(1))
+        seen.add(ident)
+    require(manifest=={"schema_version":1,"source_sha":cfg["source_sha"],"files":{k:hashlib.sha256(v).hexdigest() for k,v in sorted(files.items()) if k!="manifest.json"}},"installation manifest mismatch")
+    return cfg
+
 def root_for(checkout,files):
     root=Path(checkout)
     require(root.is_dir() and not unsafe(root),"trusted checkout required")
     root=root.resolve(strict=True)
     require(Path(git(root,"rev-parse","--show-toplevel")).resolve()==root,"checkout root required")
     require(git(root,"branch","--show-current")=="schedule-hq","use dedicated schedule-hq branch")
-    cfg=json.loads(files["installation.json"])
+    cfg=validate_bundle(files)
     expected="https://github.com/"+cfg["repository"]
     remote=git(root,"remote","get-url","origin")
     require(remote in (expected,expected+".git"),"origin locator mismatch; credential-free HTTPS required")

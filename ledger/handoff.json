@@ -1,6 +1,14 @@
 {
   "schema_version": 1,
-  "active": null,
+  "active": {
+    "version": "v0.0.0.4",
+    "phase": "Worker",
+    "next_action": "P01 regression-first isolated installation, then P02–P12 sequentially; owner foreground authorization, no scheduler lease asserted.",
+    "fix_sha": null,
+    "candidate_sha": null,
+    "pull_request": null,
+    "evidence": []
+  },
   "history": [
     {
       "handoff": {

@@ -35,6 +35,24 @@
         "Complete README smoke and external references; exact candidate public-runner, Graphify and catalog evidence.",
         "No live activation, new runtime, paid service, merge or release without further owner authorization."
       ]
+    },
+    {
+      "version": "v0.0.0.4",
+      "state": "in_progress",
+      "acceptance": [
+        "Simple repository installation",
+        "Generate five configured task prompts",
+        "Repository/timezone/schedule configuration",
+        "Authorized test-repository installation",
+        "Actual read-only scheduled execution",
+        "Same-conversation reporting",
+        "Actual duplicate suppression",
+        "Permission and unavailable capabilities",
+        "Pause/resume/interruption/recovery",
+        "Uninstall and rollback",
+        "Privacy/security qualification",
+        "Genuine independent adoption trial"
+      ]
     }
   ]
 }

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source": "vixttha/README-HQ",
+  "version": "v0.0.6 repair candidate",
+  "source_sha": "43e29074099742a2c73741176286a44ccdf861a1",
+  "mode": "pinned_remote_read_only",
+  "product_checkpoint": "v0.0.0.1",
+  "upstream_runs": [
+    45676121514,
+    45676121496,
+    45676104076
+  ],
+  "full_source_copy": false,
+  "rights_gate": "upstream issue #24 open; no new license granted"
+}

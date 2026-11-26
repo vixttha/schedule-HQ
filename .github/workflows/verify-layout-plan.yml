@@ -1,12 +1,17 @@
 name: Verify frozen baseline and proposed layout
 on:
   push:
-    branches: [plan/checkpoint-v0.0.0.2]
+    branches: [plan/checkpoint-v0.0.0.2, main]
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, edited]
 permissions:
   contents: read
 jobs:
   plan:
+    if: github.event.repository.visibility == 'public' && github.event.repository.private == false
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}

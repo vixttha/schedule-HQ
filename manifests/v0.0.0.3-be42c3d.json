@@ -318,7 +318,7 @@
       "tested_by": [
         {
           "path": "tools/qualify_schema.py",
-          "anchor": "Draft202012Validator.check_schema(schema)"
+          "anchor": "print(f\"PASS: {count} separate-engine structural/semantic qualification cases; no independent agent or host trial asserted\")"
         }
       ],
       "changed_in": [

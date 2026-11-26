@@ -3,11 +3,11 @@
   "active": {
     "issue": 2,
     "version": "v0.0.0.2",
-    "phase": "Worker",
-    "next_action": "Owner requests resolution of remaining qualification gaps before option 15. Return existing issue #2 to Worker for bounded offline schema, privacy and stable identity qualification; previous mechanical evidence retained, no independent acceptance asserted, no new runtime or live rename, no merge. Manual serial owner-authorized rework; no persistent host lease asserted.",
-    "fix_sha": null,
-    "candidate_sha": null,
-    "pull_request": null,
+    "phase": "Validate",
+    "next_action": "Verify current exact candidate source and proposed-merge public runner evidence; no integration.",
+    "fix_sha": "62731879202e145c32ce4517f693f7568f5e20d1",
+    "candidate_sha": "62731879202e145c32ce4517f693f7568f5e20d1",
+    "pull_request": 3,
     "evidence": []
   },
   "history": [

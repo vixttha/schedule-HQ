@@ -1,0 +1,84 @@
+{
+  "schema": "provenistem/standalone-and-optional-integration/v1",
+  "owner_decision_id": "GB-PROVENISTEM-OPTIONAL-RELATIONSHIP-2026-11-12",
+  "owner_ratified_at": "2026-11-12",
+  "owner_status": "OWNER_RATIFIED_ARCHITECTURE",
+  "product_id": "provenistem",
+  "architecture_state": "LOCKED",
+  "adapter_implementation_status": "NOT_IMPLEMENTED",
+  "source_of_authority": "docs/PORTABILITY-AND-MODULE-CONTRACT.md",
+  "product": {
+    "standalone": true,
+    "requires_host_framework": false,
+    "requires_runner": false,
+    "requires_network": false,
+    "requires_host_credentials": false,
+    "runtime_imports_host_framework": false,
+    "can_grant_release_approval": false,
+    "can_grant_work_authority": false,
+    "stores_project_local_ideas_and_features": true,
+    "evidence_reference_is_authentication": false
+  },
+  "optional_integration": {
+    "adapter_owned_by_host": true,
+    "explicit_host_opt_in": true,
+    "enabled_by_default": false,
+    "no_mandatory_runtime_dependency": true,
+    "no_automatic_install": true,
+    "no_automatic_sync": true,
+    "no_implicit_schema_conversion": true,
+    "no_dual_writer_canonical_records": true,
+    "separate_namespace_on_conflict": true,
+    "read_only_preflight": true,
+    "no_clobber_host_data": true,
+    "no_external_release_authority": true,
+    "adapter_required": false,
+    "prefer_minimal_compatible_host_integration": true
+  },
+  "neutral_distribution": {
+    "ship_unrelated_project_names": false,
+    "ship_historical_adopter_data": false,
+    "ship_private_repo_links": false,
+    "ship_prior_ci_runner_names": false,
+    "ship_private_evidence_receipts": false,
+    "ship_customer_data": false,
+    "use_synthetic_examples": true,
+    "keep_internal_provenance_outside_package": true
+  },
+  "release_guards": {
+    "v002_historical_tag_immutable": true,
+    "forward_clean_candidate_required": true,
+    "adapter_not_shipped_in_v002": true,
+    "requires_new_owner_decision_for_architecture_change": true,
+    "doc_lock_not_runtime_enforcement": true
+  },
+  "product_scope": {
+    "decision_id": "PROVENISTEM-SCOPE-2026-11-12",
+    "authority": "docs/PRODUCT-SCOPE-LOCK.md",
+    "status": "PRODUCT_SCOPE_LOCKED",
+    "primary_mission": "TRACK_PROJECT_IDEAS_AND_FEATURES",
+    "tracks": [
+      "ideas",
+      "features",
+      "relationships",
+      "status",
+      "progress"
+    ],
+    "supporting_metadata_only": [
+      "origin",
+      "decisions",
+      "implementation",
+      "testing",
+      "evidence_references"
+    ],
+    "excludes": [
+      "governance_engine",
+      "evidence_attestation",
+      "release_authority",
+      "task_orchestration",
+      "general_knowledge_platform"
+    ],
+    "no_unapproved_scope_expansion": true,
+    "later_narrow_scope_supersedes_earlier_broad_descriptions": true
+  }
+}

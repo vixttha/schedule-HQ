@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Portable Feature Record v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "id",
+    "title",
+    "summary",
+    "kind",
+    "lifecycle_status",
+    "implementation_status",
+    "idea_ids",
+    "acceptance_criteria",
+    "testing",
+    "evidence",
+    "release_membership"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^FEAT-[0-9]{6}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 10
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "capability",
+        "integration",
+        "workflow",
+        "other"
+      ]
+    },
+    "lifecycle_status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "planned",
+        "in_progress",
+        "implemented",
+        "verified",
+        "deprecated",
+        "retired"
+      ]
+    },
+    "implementation_status": {
+      "type": "string",
+      "enum": [
+        "not_planned",
+        "planned",
+        "in_progress",
+        "implemented",
+        "removed"
+      ]
+    },
+    "idea_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^IDEA-[0-9]{6}$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": false
+    },
+    "testing": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "untested",
+            "planned",
+            "in_progress",
+            "tested"
+          ]
+        },
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail",
+            "mixed",
+            "inconclusive"
+          ]
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "kind",
+          "claim",
+          "source_sha",
+          "source_path",
+          "receipt"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "implementation",
+              "test",
+              "audit",
+              "other"
+            ]
+          },
+          "claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_sha": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "source_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "receipt": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "uniqueItems": false
+    },
+    "release_membership": {
+      "type": "string",
+      "const": "NOT_ASSERTED"
+    }
+  },
+  "additionalProperties": false
+}

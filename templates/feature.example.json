@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "id": "FEAT-000001",
+  "title": "Example: helpful project capability",
+  "summary": "Describe the proposed feature and its scope, not a claim of delivery.",
+  "kind": "capability",
+  "lifecycle_status": "proposed",
+  "implementation_status": "not_planned",
+  "idea_ids": [],
+  "acceptance_criteria": [
+    "Describe a concrete acceptance condition before planning implementation"
+  ],
+  "testing": {
+    "status": "untested"
+  },
+  "evidence": [],
+  "release_membership": "NOT_ASSERTED"
+}

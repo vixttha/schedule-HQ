@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "IDEA-000001",
+  "title": "Example: improve a project workflow",
+  "summary": "Explore an optional improvement without authorizing implementation.",
+  "kind": "process",
+  "origin": {
+    "created_by": "human",
+    "source": "Example input; replace with your actual discussion or source"
+  },
+  "lifecycle_status": "captured",
+  "implementation_status": "not_planned",
+  "testing": {
+    "status": "untested"
+  },
+  "importance": "unknown",
+  "complexity": "unknown",
+  "categories": [
+    "workflow"
+  ],
+  "benefits": [
+    "Potentially reduces repeated manual steps"
+  ],
+  "risks": [
+    "May introduce maintenance burden"
+  ],
+  "related_ideas": [],
+  "evidence": []
+}

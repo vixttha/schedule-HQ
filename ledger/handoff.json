@@ -9,12 +9,12 @@
     "candidate_sha": "62731879202e145c32ce4517f693f7568f5e20d1",
     "pull_request": 3,
     "evidence": [
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45794708618",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45794715404",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45795389031",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45795484450",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45795520897",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45795736361"
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45794708618/attempts/1",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45794715404/attempts/1",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45795389031/attempts/1",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45795484450/attempts/1",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45795520897/attempts/1",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45795736361/attempts/1"
     ]
   },
   "history": [

@@ -50,7 +50,7 @@ class DurableDelivery(unittest.TestCase):
         self.root=Path(self.tmp.name);self.store=History(self.root,123,"test-install")
         self.e=observation(provenance="authenticated")
         self.store.append(self.e,authenticated=True);self.k=event_key(self.e)
-        self.kw=dict(associated=True,delivery_supported=True,readback_supported=True)
+        self.kw=dict(associated=True,delivery_supported=True,readback_supported=True,observation_verified=True)
     def test_pending_restart_ack_and_suppress(self):
         from schedule_hq.history.store import History
         p=self.store.prepare_delivery(self.k,"private-binding",**self.kw)

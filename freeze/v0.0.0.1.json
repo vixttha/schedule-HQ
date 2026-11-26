@@ -1,0 +1,587 @@
+{
+  "schema_version": 1,
+  "checkpoint": "v0.0.0.1",
+  "disposition": "owner_directed_frozen_foundation_not_release",
+  "issue": 1,
+  "successor_issue": 2,
+  "repository_id": 1472890396,
+  "repository": "vixttha/schedule-HQ",
+  "components": {
+    "main": {
+      "commit": "ca17ceae56d8f42523db43a1bc3090496ca22866",
+      "tree": "1bbceca124ff77d12d1e36d66aaf36100cea13ad",
+      "files": [
+        {
+          "path": "README.md",
+          "blob": "fb201f7dca8c4f46c79c628341ccdcc1eb24833a",
+          "mode": "100644",
+          "size": 61
+        }
+      ],
+      "proof_run": null
+    },
+    "Schedule-HQ-Template": {
+      "commit": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
+      "tree": "e5feb50c2767b193a504beed05d264f2f5796f9d",
+      "files": [
+        {
+          "path": ".github/workflows/verify-template.yml",
+          "blob": "83f6a6961927ac9ef693dfb2ce2b2659a927f047",
+          "mode": "100644",
+          "size": 636
+        },
+        {
+          "path": "README.md",
+          "blob": "85888b60bbe5c5f019af8a2a136713db8834d463",
+          "mode": "100644",
+          "size": 885
+        },
+        {
+          "path": "TASKS.md",
+          "blob": "c23987f4ea2bf68d0f123fd7da2126ef5ac54035",
+          "mode": "100644",
+          "size": 3159
+        },
+        {
+          "path": "WORKFLOW.md",
+          "blob": "be4c38a3a82d94366bb657032a16157c4b317ac8",
+          "mode": "100644",
+          "size": 1856
+        },
+        {
+          "path": "dashboard.html",
+          "blob": "57e4bad445e2b98b86f19fa0c411be96043d0e82",
+          "mode": "100644",
+          "size": 1456
+        },
+        {
+          "path": "dependencies.json",
+          "blob": "18a0fa9f7d1ac2ee27f84cea8f755e453a7c78c4",
+          "mode": "100644",
+          "size": 745
+        },
+        {
+          "path": "examples/receipt.json",
+          "blob": "b52eb57942619d0da9d08feb5304601de4d98fcb",
+          "mode": "100644",
+          "size": 487
+        },
+        {
+          "path": "schedule.json",
+          "blob": "e2e542f52ab9548ced44897fe4102f08c07d1dfe",
+          "mode": "100644",
+          "size": 1773
+        },
+        {
+          "path": "tests/test_contract.py",
+          "blob": "67e997face9d8a74f46f5ea01b43f81c783716f1",
+          "mode": "100644",
+          "size": 840
+        },
+        {
+          "path": "tools/check.py",
+          "blob": "010946efce86cd2129dbfd059eaf97fa8fe29b04",
+          "mode": "100644",
+          "size": 971
+        }
+      ],
+      "proof_run": 45786560547
+    },
+    "Version-Issues-Hub": {
+      "commit": "deea71390bf19e6c47b0728d4ee87be875bd68a6",
+      "tree": "ecb5b6f11e4f3c3450cdd801e946f112bcd09bc2",
+      "files": [
+        {
+          "path": ".github/workflows/verify-install.yml",
+          "blob": "90f64ab6a42e5d076fc2693fd05bb26ee990f462",
+          "mode": "100644",
+          "size": 1331
+        },
+        {
+          "path": "ADOPTER-HANDOFF.md",
+          "blob": "aa490e035e7bb37db0b194fb51ec73bddab1ab6d",
+          "mode": "100644",
+          "size": 697
+        },
+        {
+          "path": "AGENTS.md",
+          "blob": "bca570535ee99eebd65cb1b06a70617d80bf31ec",
+          "mode": "100644",
+          "size": 5321
+        },
+        {
+          "path": "GATE.md",
+          "blob": "8046f3b6ca1edc1a557d88b486feb3ad3f35f1a4",
+          "mode": "100644",
+          "size": 7774
+        },
+        {
+          "path": "LIFECYCLE.md",
+          "blob": "445b767b508b4813d34bcb343bf9e2778b01842f",
+          "mode": "100644",
+          "size": 3066
+        },
+        {
+          "path": "README.md",
+          "blob": "b94553fae7bd487c7a843aadcaf339ea2ecf46e6",
+          "mode": "100644",
+          "size": 4152
+        },
+        {
+          "path": "STANDARD.md",
+          "blob": "a3e20ccc78f17bc9c37158ea46d961f17b6672f2",
+          "mode": "100644",
+          "size": 2541
+        },
+        {
+          "path": "VIB-LICENSE.md",
+          "blob": "90abd0e6c64a135f42451762337a397bf27f4862",
+          "mode": "100644",
+          "size": 3593
+        },
+        {
+          "path": "VIB-NOTICE.md",
+          "blob": "70dd8710828a38118965be3ca8be32457d106789",
+          "mode": "100644",
+          "size": 8644
+        },
+        {
+          "path": "WORKFLOW.md",
+          "blob": "355ea01d0822ea46d44c4981aef18dcf06ede075",
+          "mode": "100644",
+          "size": 7170
+        },
+        {
+          "path": "ledger/handoff.json",
+          "blob": "72f1754c92ca5b723005010436e19bceb038350a",
+          "mode": "100644",
+          "size": 61
+        },
+        {
+          "path": "ledger/issue-versions.json",
+          "blob": "762a19a92768fc4411cdab831a7c18264ae88cf1",
+          "mode": "100644",
+          "size": 737
+        },
+        {
+          "path": "tools/checkpoint.py",
+          "blob": "6cef8e47f6471c4dd5e5a490b208541439cd8ca0",
+          "mode": "100644",
+          "size": 13615
+        },
+        {
+          "path": "tools/gate.py",
+          "blob": "662dc2df3762530f04704360c5bc4c1801f53ff1",
+          "mode": "100644",
+          "size": 18975
+        },
+        {
+          "path": "tools/install.py",
+          "blob": "ebdccfe26d3ffc341d3dac07ae6ac071a0d251a1",
+          "mode": "100644",
+          "size": 14578
+        },
+        {
+          "path": "tools/lifecycle.py",
+          "blob": "e2e52696b939ac7649487abc19ed38552488536d",
+          "mode": "100644",
+          "size": 9569
+        },
+        {
+          "path": "tools/session.py",
+          "blob": "09f3f5483c0815eb885bbecca4c58c6a38605925",
+          "mode": "100644",
+          "size": 22944
+        },
+        {
+          "path": "tools/standard.py",
+          "blob": "59f0a6254c3b2539c45be8152eb395c766f174e3",
+          "mode": "100644",
+          "size": 5671
+        },
+        {
+          "path": "vib-install.json",
+          "blob": "600734b70d2f9103347ab6dc8ca737bb4de18695",
+          "mode": "100644",
+          "size": 1770
+        }
+      ],
+      "proof_run": 45786778760
+    },
+    "Provenistem": {
+      "commit": "0865cb3302b8a285181c510f28db5d36cabfeee5",
+      "tree": "c06a99fed74bfd28582200b8090d7ef19655d52c",
+      "files": [
+        {
+          "path": ".github/workflows/validate-catalog.yml",
+          "blob": "dc4a28bb5367bb03b8861c4d04972a7d6ff74fa0",
+          "mode": "100644",
+          "size": 472
+        },
+        {
+          "path": "INSTALLATION.md",
+          "blob": "fab1cd8e6501ba7d0edde8bf8685d03b6cf350eb",
+          "mode": "100644",
+          "size": 365
+        },
+        {
+          "path": "LIBRARY-AGENT-GUIDE.md",
+          "blob": "d2aede46bbd1fda749e58abf96f7e9f80a5ecb02",
+          "mode": "100644",
+          "size": 5217
+        },
+        {
+          "path": "LICENSE",
+          "blob": "2fca5f35039b9b1eb3c3d193219411a9cf0765f1",
+          "mode": "100644",
+          "size": 1087
+        },
+        {
+          "path": "README.md",
+          "blob": "e4b19178818149fe0e19577a3aa008788cca7f4c",
+          "mode": "100644",
+          "size": 10367
+        },
+        {
+          "path": "docs/ADOPTION.md",
+          "blob": "c8f76358368500cdff511cfd61ee4f50f93e7461",
+          "mode": "100644",
+          "size": 4486
+        },
+        {
+          "path": "docs/ISOLATION.md",
+          "blob": "6152cc8e1e9591c5ba65cab198502988f9edaddc",
+          "mode": "100644",
+          "size": 1939
+        },
+        {
+          "path": "docs/LIFECYCLE.md",
+          "blob": "e3a35fe1f43fe6167892cc341813d6e1c7aba7bc",
+          "mode": "100644",
+          "size": 1699
+        },
+        {
+          "path": "docs/ONE-WAY-BOUNDARY.md",
+          "blob": "463911417c25411877ff7646da49a2c09bfa086e",
+          "mode": "100644",
+          "size": 5024
+        },
+        {
+          "path": "docs/PORTABILITY-AND-MODULE-CONTRACT.json",
+          "blob": "535a1b3308ecebe3b441de7eb5c40769ddcae24f",
+          "mode": "100644",
+          "size": 2795
+        },
+        {
+          "path": "docs/PORTABILITY-AND-MODULE-CONTRACT.md",
+          "blob": "5194ad3d20ae0223f9e2894a6abe993ca67813be",
+          "mode": "100644",
+          "size": 7289
+        },
+        {
+          "path": "docs/PRODUCT-SCOPE-LOCK.md",
+          "blob": "817279adffcd8cf5d17128ad206beecd6eb0bce1",
+          "mode": "100644",
+          "size": 3696
+        },
+        {
+          "path": "docs/PROVENANCE.md",
+          "blob": "3a29419d40dc0203bc249da3156bf2b87f524c3f",
+          "mode": "100644",
+          "size": 2226
+        },
+        {
+          "path": "features/INDEX.md",
+          "blob": "345cf33177528ec1c8260098471623500617ceb6",
+          "mode": "100644",
+          "size": 1071
+        },
+        {
+          "path": "features/README.md",
+          "blob": "8d755b25537f5e4bb3f5343398cfe280359aacc1",
+          "mode": "100644",
+          "size": 883
+        },
+        {
+          "path": "features/records/.gitkeep",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "mode": "100644",
+          "size": 0
+        },
+        {
+          "path": "features/records/FEAT-000001.json",
+          "blob": "3cdd337c6c52586d67ecdee64d189664939853ec",
+          "mode": "100644",
+          "size": 973
+        },
+        {
+          "path": "features/records/FEAT-000002.json",
+          "blob": "56dd384cea13333d3863a44f2881ca6d35fc3009",
+          "mode": "100644",
+          "size": 970
+        },
+        {
+          "path": "features/records/FEAT-000003.json",
+          "blob": "7ace7fcc8d7a796ce7bdf3a586986a54a3ee510e",
+          "mode": "100644",
+          "size": 979
+        },
+        {
+          "path": "features/records/FEAT-000004.json",
+          "blob": "aa0824a7b6bddb0e60a2c7c4390c83e27d3cd7de",
+          "mode": "100644",
+          "size": 1018
+        },
+        {
+          "path": "features/records/FEAT-000005.json",
+          "blob": "987351ea4109d758f84b7c22a410dfe59ba1c60e",
+          "mode": "100644",
+          "size": 988
+        },
+        {
+          "path": "features/records/FEAT-000006.json",
+          "blob": "e918f63804eac86aeaaf352f72a7c6dec692977e",
+          "mode": "100644",
+          "size": 1044
+        },
+        {
+          "path": "features/records/FEAT-000007.json",
+          "blob": "94c98e1be644be44fbe5e16c205b2bddd34cd236",
+          "mode": "100644",
+          "size": 1024
+        },
+        {
+          "path": "features/records/FEAT-000008.json",
+          "blob": "0ec33570ddd299d6d427668aba454b079417c5a0",
+          "mode": "100644",
+          "size": 1026
+        },
+        {
+          "path": "features/records/FEAT-000009.json",
+          "blob": "b7acecfcb17484db3d84120d693e9e3a7fcae98c",
+          "mode": "100644",
+          "size": 969
+        },
+        {
+          "path": "features/records/FEAT-000010.json",
+          "blob": "86795052524e4bd7eab7bb78b9be46b51fd7e185",
+          "mode": "100644",
+          "size": 1004
+        },
+        {
+          "path": "features/schema/v1/feature.schema.json",
+          "blob": "7c296670856fe1f90787bb7e86093098fd8e635a",
+          "mode": "100644",
+          "size": 3412
+        },
+        {
+          "path": "ideas/INDEX.md",
+          "blob": "2c2a055b10e7b148c59bb5fcacc56356afa52ede",
+          "mode": "100644",
+          "size": 969
+        },
+        {
+          "path": "ideas/README.md",
+          "blob": "a95e1a3e4c5b5a94fdc7d2d9465baeafdadf7e77",
+          "mode": "100644",
+          "size": 784
+        },
+        {
+          "path": "ideas/records/.gitkeep",
+          "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+          "mode": "100644",
+          "size": 0
+        },
+        {
+          "path": "ideas/records/IDEA-000001.json",
+          "blob": "25b47bce8c920e3d9ca6ecc9bfc0107cc9f78614",
+          "mode": "100644",
+          "size": 971
+        },
+        {
+          "path": "ideas/records/IDEA-000002.json",
+          "blob": "08197e3e91edb8b1c9890dbba45623129fd1f9f6",
+          "mode": "100644",
+          "size": 965
+        },
+        {
+          "path": "ideas/records/IDEA-000003.json",
+          "blob": "51a72d798da1af1f67e213170bccba8e48b9449f",
+          "mode": "100644",
+          "size": 971
+        },
+        {
+          "path": "ideas/records/IDEA-000004.json",
+          "blob": "8f43dcb3ea0c1c502f4b5a0fedb34f2b02676275",
+          "mode": "100644",
+          "size": 988
+        },
+        {
+          "path": "ideas/records/IDEA-000005.json",
+          "blob": "299b4d7819c857a5881cd57ca4f8b1ba3e930d7a",
+          "mode": "100644",
+          "size": 974
+        },
+        {
+          "path": "ideas/records/IDEA-000006.json",
+          "blob": "ea3dff3dfe81ef08f925d242bea29f82bcb91501",
+          "mode": "100644",
+          "size": 1008
+        },
+        {
+          "path": "ideas/records/IDEA-000007.json",
+          "blob": "739cb122da1629349983ea6c66dc3987f77007ad",
+          "mode": "100644",
+          "size": 997
+        },
+        {
+          "path": "ideas/records/IDEA-000008.json",
+          "blob": "c86d4c89a85e860bf46a55ebb5f98f99a1f7a95e",
+          "mode": "100644",
+          "size": 1000
+        },
+        {
+          "path": "ideas/records/IDEA-000009.json",
+          "blob": "47aedaa446f460625eb4a0ec9a143ac986123e38",
+          "mode": "100644",
+          "size": 968
+        },
+        {
+          "path": "ideas/records/IDEA-000010.json",
+          "blob": "9c27372189ea070af42e62aa107869f8ebd9d70d",
+          "mode": "100644",
+          "size": 989
+        },
+        {
+          "path": "ideas/schema/v1/idea.schema.json",
+          "blob": "bbc4cb327a570632f65d0242bde3134aff210688",
+          "mode": "100644",
+          "size": 5213
+        },
+        {
+          "path": "templates/feature.example.json",
+          "blob": "ebd8e968acd10e68503e2a3fb1e2d0bf89625e51",
+          "mode": "100644",
+          "size": 516
+        },
+        {
+          "path": "templates/idea.example.json",
+          "blob": "7bf5fca7557a705d7ce8f2c55149d1c64c5200d5",
+          "mode": "100644",
+          "size": 707
+        },
+        {
+          "path": "tools/adopter.py",
+          "blob": "895d2eb80bf2abb094821b112eb315054eba3582",
+          "mode": "100644",
+          "size": 7209
+        },
+        {
+          "path": "tools/library.py",
+          "blob": "d5a98cf3d9fff02d21127028647d669a08a2a0a9",
+          "mode": "100644",
+          "size": 22548
+        }
+      ],
+      "proof_run": 45786724761
+    },
+    "Veraphify": {
+      "commit": "51b01c5ed29ca7e8c3470171b3c0e837379e9c3c",
+      "tree": "525a9f51d948910092c71f00a72e07c915ebf16e",
+      "files": [
+        {
+          "path": ".github/workflows/archive-schedule.yml",
+          "blob": "c739121ae176469b9c87ca9b7c9e78d30a0de867",
+          "mode": "100644",
+          "size": 2958
+        },
+        {
+          "path": "ADOPTION.md",
+          "blob": "e08a0c8591a0b28e86cd93fd3f48d37ae5f3985d",
+          "mode": "100644",
+          "size": 692
+        },
+        {
+          "path": "LICENSE",
+          "blob": "1466aeaa07d9f7fd502ca697353b5feace5f4e5a",
+          "mode": "100644",
+          "size": 1064
+        },
+        {
+          "path": "README.md",
+          "blob": "e5eea3b598090524939f32f4043fd9efa306ba07",
+          "mode": "100644",
+          "size": 2935
+        },
+        {
+          "path": "archive/README.md",
+          "blob": "4cb372bcda338e0e4cfcf77b219a5270a4c6d7f9",
+          "mode": "100644",
+          "size": 407
+        },
+        {
+          "path": "archive/v0.0.0.1-pins.json",
+          "blob": "307e62ad977f29188b6bc04de770c1f8041f1687",
+          "mode": "100644",
+          "size": 1293
+        },
+        {
+          "path": "docs/adopter-walkthrough.md",
+          "blob": "171eb6a823472c8595b096d69a91e8db2f5a1ea0",
+          "mode": "100644",
+          "size": 5476
+        },
+        {
+          "path": "docs/reuse.md",
+          "blob": "0b2887ea185e4691fe5a074bf206c4dbd60eab5b",
+          "mode": "100644",
+          "size": 1489
+        },
+        {
+          "path": "manifests/v0.0.0.1.json",
+          "blob": "d9cf8feca233dc013d0cbd73c219c5249bd289bf",
+          "mode": "100644",
+          "size": 2487
+        },
+        {
+          "path": "test-vault/LICENSE",
+          "blob": "30e65839065c0ea88ca00a2de47d65de4313e154",
+          "mode": "100644",
+          "size": 1087
+        },
+        {
+          "path": "test-vault/README.md",
+          "blob": "e6a06ba54dc4ae4d91f2fb8d2a338d962ac34425",
+          "mode": "100644",
+          "size": 375
+        },
+        {
+          "path": "test-vault/handoff-profile.json",
+          "blob": "d5bf5921531cf4e4558adeb9dead1626ce8f77dc",
+          "mode": "100644",
+          "size": 290
+        },
+        {
+          "path": "test-vault/javascript/inspect-evidence.mjs",
+          "blob": "951935535ea8566ac266afb9e954945e494211e9",
+          "mode": "100644",
+          "size": 15906
+        },
+        {
+          "path": "veraphifiy.mjs",
+          "blob": "548d81dd518240bc73d7bcfb2bac04fb0691a7d3",
+          "mode": "100644",
+          "size": 9892
+        }
+      ],
+      "proof_run": 45787326454,
+      "tested_commit": "463c0ff4da13462b2e15141b90df26a39e52c994"
+    }
+  },
+  "limitations": [
+    "Issue #1 remains open; no live scheduler enforcement or independent agent acceptance.",
+    "No protected tag or branch protection; exact commit and blob pins define the frozen baseline.",
+    "Raw graph archive available in retained Actions artifact 15101520309, expires 2027-02-24; durable bytes retention outstanding.",
+    "Template dependencies.json is historical and points to initial installations; this manifest is the authoritative frozen snapshot."
+  ]
+}

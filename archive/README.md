@@ -1,5 +1,11 @@
 # Schedule HQ evidence archive
 
-[v0.0.0.1 verified pins](v0.0.0.1-pins.json) identify the exact template source, public runner, archive and downloaded ZIP hashes. The actual archive bytes are in the retained GitHub Actions artifact (expires 2027-02-24); download and preserve them before expiry. The pin record is permanent, not a substitute for the archive bytes. No historical archive may be overwritten.
+Historical pin records are immutable and describe the storage available when they were produced. The supplemental [preservation receipt](preservation-receipt.json) establishes that all three exact ZIPs now reside in Git, rather than only expiring Actions artifacts.
 
-[v0.0.0.2 verified pins](v0.0.0.2-pins.json) bind the new offline contract graph to the exact candidate. ZIP, archive, graph and receipt digests independently matched; 43 nodes and 65 edges checked. Seven feature lookups produced by Veraphify; raw bytes remain in the expiring artifact. No historical pin replaced.
+| Candidate | Pins | Exact ZIP |
+|---|---|---|
+| .1 e0f9e7a | [pins](v0.0.0.1-pins.json) | [archive](bytes/v0.0.0.1-e0f9e7a.zip) |
+| .2 ab6235f | [pins](v0.0.0.2-pins.json) | [archive](bytes/v0.0.0.2-ab6235f.zip) |
+| .2 6273187 | [pins](v0.0.0.2-6273187-pins.json) | [archive](bytes/v0.0.0.2-6273187.zip) |
+
+No historical ZIP or pin is overwritten. The one-time write-capable preservation workflow is removed after successful preservation. These records are mechanical evidence, not independent host or owner acceptance.

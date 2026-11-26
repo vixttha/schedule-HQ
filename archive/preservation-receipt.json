@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "verified_tree_commit": "0c109ba1e7e6eaecbce7ddcbc119328663299b0d",
+  "archives": [
+    {
+      "path": "archive/bytes/v0.0.0.1-e0f9e7a.zip",
+      "git_blob_sha": "1da8c3cf583cb6894f41350c4aef2e5e066903a9",
+      "size": 10767
+    },
+    {
+      "path": "archive/bytes/v0.0.0.2-ab6235f.zip",
+      "git_blob_sha": "961325bf11ca70b9eb8f22f92273535d0a1946d1",
+      "size": 21881
+    },
+    {
+      "path": "archive/bytes/v0.0.0.2-6273187.zip",
+      "git_blob_sha": "da3b4a97e282c2b8c846292f4b2bf7cc273d5aef",
+      "size": 33285
+    }
+  ],
+  "preservation_runs": [
+    45795520897,
+    45795736361
+  ],
+  "verification": "Downloaded exact ZIP bytes; SHA256 and internal graph/receipt/archive digests checked; Git blob identities independently computed and matched remote tree.",
+  "scope": "Durable Git objects; no release acceptance."
+}

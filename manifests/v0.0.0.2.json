@@ -1,0 +1,214 @@
+{
+  "repository": "vixttha/schedule-HQ",
+  "source_commit": "ab6235f64c45c3739bcd2b138da0824e5082e8ef",
+  "title": "Schedule HQ v0.0.0.2 offline architecture contracts",
+  "source_files": [
+    "src/schedule_hq/policy/authority.py",
+    "tests/test_policy.py",
+    "src/schedule_hq/policy/reporting.py",
+    "src/schedule_hq/policy/recovery.py",
+    "src/schedule_hq/policy/scheduling.py",
+    "src/schedule_hq/evidence/public.py",
+    "src/schedule_hq/adapters/capabilities.py",
+    "src/schedule_hq/contracts/paths.py",
+    "tests/test_portability.py"
+  ],
+  "features": [
+    {
+      "id": "authority",
+      "label": "Exclusive publication decision",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Lease decision requires independently authenticated actor, owner authorization, matching issue/repository/head/fence, unexpired lease, no competing claim and atomic host enforcement. It is not a lease acquisition. Dedup keys exclude execution timestamps; durable cursor updates only after verified delivery in the associated conversation. Recovery never automatically retries; a verified unchanged head permits reauthorization only. UTC slots are bounded; local timestamps use observed offset, not inferred DST or timezone rules. NOT OBSERVED is not proof of a missed run. Actual host behavior remains unqualified. Schema files are structural; Python semantic validation is mandatory."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/policy/authority.py",
+          "anchor": "def may_publish(*, task, authorized, authenticated_actor, lease, repository_id, issue, head, fence, now, competing, atomic_supported):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_allowed(self): self.assertTrue(may_publish(**self.args))"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/policy/authority.py",
+          "anchor": "\"\"\"Pure fail-closed decision. Caller must independently authenticate and enforce atomic CAS.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "dedup",
+      "label": "Material-change fingerprint",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Lease decision requires independently authenticated actor, owner authorization, matching issue/repository/head/fence, unexpired lease, no competing claim and atomic host enforcement. It is not a lease acquisition. Dedup keys exclude execution timestamps; durable cursor updates only after verified delivery in the associated conversation. Recovery never automatically retries; a verified unchanged head permits reauthorization only. UTC slots are bounded; local timestamps use observed offset, not inferred DST or timezone rules. NOT OBSERVED is not proof of a missed run. Actual host behavior remains unqualified. Schema files are structural; Python semantic validation is mandatory."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/policy/reporting.py",
+          "anchor": "def fingerprint(receipt):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_dedup_time(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/policy/reporting.py",
+          "anchor": "\"\"\"Deduplication intent; only confirmed delivery can advance a durable host cursor.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "recovery",
+      "label": "Ambiguous publication recovery",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Lease decision requires independently authenticated actor, owner authorization, matching issue/repository/head/fence, unexpired lease, no competing claim and atomic host enforcement. It is not a lease acquisition. Dedup keys exclude execution timestamps; durable cursor updates only after verified delivery in the associated conversation. Recovery never automatically retries; a verified unchanged head permits reauthorization only. UTC slots are bounded; local timestamps use observed offset, not inferred DST or timezone rules. NOT OBSERVED is not proof of a missed run. Actual host behavior remains unqualified. Schema files are structural; Python semantic validation is mandatory."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/policy/recovery.py",
+          "anchor": "def recovery(*, before, expected, observed, observation_verified, intent_verified, same_fence, atomic_supported):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_recovery(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/policy/recovery.py",
+          "anchor": "\"\"\"No blind retries after ambiguous writes; observe a durable intent first.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "utc-slots",
+      "label": "Nominal UTC schedule",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Lease decision requires independently authenticated actor, owner authorization, matching issue/repository/head/fence, unexpired lease, no competing claim and atomic host enforcement. It is not a lease acquisition. Dedup keys exclude execution timestamps; durable cursor updates only after verified delivery in the associated conversation. Recovery never automatically retries; a verified unchanged head permits reauthorization only. UTC slots are bounded; local timestamps use observed offset, not inferred DST or timezone rules. NOT OBSERVED is not proof of a missed run. Actual host behavior remains unqualified. Schema files are structural; Python semantic validation is mandatory."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/policy/scheduling.py",
+          "anchor": "def slots(task,start,end):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_slots(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/policy/scheduling.py",
+          "anchor": "\"\"\"Nominal UTC slots only; no scheduler invocation or host-delivery promise.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "label": "Public summary allowlist",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Contracts parse and validate input. Policy consumes validated facts; no API calls or credentials. Evidence exposes only fixed public fields (free text, proof URLs, SHAs, identities and raw logs excluded). Adapters are capability declarations, not implementations. CLI and wrappers call contracts. Dashboard is generated, not authoritative."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/evidence/public.py",
+          "anchor": "def public_summary(receipt):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_public_projection(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/evidence/public.py",
+          "anchor": "\"\"\"Allowlisted public projection; deliberately drops arbitrary text and all external URLs.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "capability",
+      "label": "Explicit adapter capability",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Contracts parse and validate input. Policy consumes validated facts; no API calls or credentials. Evidence exposes only fixed public fields (free text, proof URLs, SHAs, identities and raw logs excluded). Adapters are capability declarations, not implementations. CLI and wrappers call contracts. Dashboard is generated, not authoritative."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/adapters/capabilities.py",
+          "anchor": "def available(capabilities,name):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_adapter(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/adapters/capabilities.py",
+          "anchor": "\"\"\"No adapter is installed. Capabilities must be verified by the actual host.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "paths",
+      "label": "Portable migration paths",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Historical pins identify frozen sources; never replace them with moving branch tips. No schema v2 until a breaking wire change is approved. No new live scheduler integrations in .2."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/contracts/paths.py",
+          "anchor": "def portable(path):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_portability.py",
+          "anchor": "def test_unsafe_paths(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/contracts/paths.py",
+          "anchor": "\"\"\"Portable paths and confined migration reads.\"\"\""
+        }
+      ]
+    }
+  ]
+}

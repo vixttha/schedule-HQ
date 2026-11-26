@@ -7,7 +7,8 @@
     "fix_sha": null,
     "candidate_sha": null,
     "pull_request": null,
-    "evidence": []
+    "evidence": [],
+    "issue": 6
   },
   "history": [
     {

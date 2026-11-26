@@ -3,8 +3,8 @@
   "active": {
     "issue": 2,
     "version": "v0.0.0.2",
-    "phase": "Internal Auditor",
-    "next_action": "Review exact mechanical evidence. Source and PR 58 tests per OS plus 28 schema cases each and 5 rollback tests per OS. Three archive ZIPs preserved, current graph 61 nodes/92 relationships and 10 features. Actual rename, host enforcement, independent review and final owner acceptance remain open. No option 15 or merge.",
+    "phase": "Head",
+    "next_action": "Owner explicitly authorizes .2 merge and issue closure for offline architecture scope; same-session review recorded. Independent review and live host qualification remain outstanding, not certified; carry to next checkpoint. Verify actual merged SHA before closure. No release or activation.",
     "fix_sha": "62731879202e145c32ce4517f693f7568f5e20d1",
     "candidate_sha": "62731879202e145c32ce4517f693f7568f5e20d1",
     "pull_request": 3,

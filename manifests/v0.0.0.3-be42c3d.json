@@ -1,0 +1,613 @@
+{
+  "repository": "vixttha/schedule-HQ",
+  "source_commit": "be42c3df5280ef09b8d7167d2da9b8dc2a14606d",
+  "title": "Schedule HQ .3 — durable execution evidence and retained offline contracts",
+  "source_files": [
+    ".github/workflows/evaluate-storage.yml",
+    ".github/workflows/verify-layout-plan.yml",
+    "dashboard/execution-example.html",
+    "schemas/v1/observation.schema.json",
+    "src/schedule_hq/__init__.py",
+    "src/schedule_hq/adapters/__init__.py",
+    "src/schedule_hq/adapters/capabilities.py",
+    "src/schedule_hq/adapters/observation.py",
+    "src/schedule_hq/cli.py",
+    "src/schedule_hq/contracts/__init__.py",
+    "src/schedule_hq/contracts/identity.py",
+    "src/schedule_hq/contracts/paths.py",
+    "src/schedule_hq/contracts/validation.py",
+    "src/schedule_hq/evidence/__init__.py",
+    "src/schedule_hq/evidence/history_report.py",
+    "src/schedule_hq/evidence/public.py",
+    "src/schedule_hq/history/__init__.py",
+    "src/schedule_hq/history/events.py",
+    "src/schedule_hq/history/reconcile.py",
+    "src/schedule_hq/history/store.py",
+    "src/schedule_hq/policy/__init__.py",
+    "src/schedule_hq/policy/authority.py",
+    "src/schedule_hq/policy/intent.py",
+    "src/schedule_hq/policy/recovery.py",
+    "src/schedule_hq/policy/reporting.py",
+    "src/schedule_hq/policy/scheduling.py",
+    "tests/test_architecture_contracts.py",
+    "tests/test_contract.py",
+    "tests/test_execution_history.py",
+    "tests/test_history_contracts.py",
+    "tests/test_local_history.py",
+    "tests/test_policy.py",
+    "tests/test_portability.py",
+    "tests/test_qualification.py",
+    "tests/test_write_journal.py",
+    "tools/check.py",
+    "tools/evaluate_storage.py",
+    "tools/generate_views.py",
+    "tools/qualify_schema.py",
+    "tools/qualify_workload.py",
+    "tools/render_history.py",
+    "tools/verify_layout_plan.py",
+    "tools/verify_publication.py"
+  ],
+  "features": [
+    {
+      "id": "authority",
+      "label": "Exclusive publication decision",
+      "documented_in": [
+        {
+          "path": "prompts/roles/development.md",
+          "anchor": "Recheck exclusive ownership and expected ref immediately before publication; no blind retry of uncertain writes."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/policy/authority.py",
+          "anchor": "def may_publish(*, task, authorized, authenticated_actor, lease, repository_id, issue, head, fence, now, competing, atomic_supported):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_allowed(self): self.assertTrue(may_publish(**self.args))"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/policy/authority.py",
+          "anchor": "\"\"\"Pure fail-closed decision. Caller must independently authenticate and enforce atomic CAS.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "dedup",
+      "label": "Material-change fingerprint",
+      "documented_in": [
+        {
+          "path": "prompts/roles/handoff.md",
+          "anchor": "Escalate only changed blockers; do not claim the lane."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/policy/reporting.py",
+          "anchor": "def fingerprint(receipt):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_dedup_time(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/policy/reporting.py",
+          "anchor": "\"\"\"Deduplication intent; only confirmed delivery can advance a durable host cursor.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "recovery",
+      "label": "Ambiguous publication recovery",
+      "documented_in": [
+        {
+          "path": "prompts/roles/development.md",
+          "anchor": "Recheck exclusive ownership and expected ref immediately before publication; no blind retry of uncertain writes."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/policy/recovery.py",
+          "anchor": "def recovery(*, before, expected, observed, observation_verified, intent_verified, same_fence, atomic_supported):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_recovery(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/policy/recovery.py",
+          "anchor": "\"\"\"No blind retries after ambiguous writes; observe a durable intent first.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "utc-slots",
+      "label": "Nominal UTC schedule",
+      "documented_in": [
+        {
+          "path": "config/schedule.json",
+          "anchor": "\"timezone\": \"Etc/UTC\","
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/policy/scheduling.py",
+          "anchor": "def slots(task,start,end):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_slots(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/policy/scheduling.py",
+          "anchor": "\"\"\"Nominal UTC slots only; no scheduler invocation or host-delivery promise.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "label": "Public summary allowlist",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Contracts parse and validate input. Policy consumes validated facts; no API calls or credentials. Evidence exposes only fixed public fields (free text, proof URLs, SHAs, identities and raw logs excluded). Adapters are capability declarations, not implementations. CLI and wrappers call contracts. Dashboard is generated, not authoritative."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/evidence/public.py",
+          "anchor": "def public_summary(receipt):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_public_projection(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/evidence/public.py",
+          "anchor": "\"\"\"Allowlisted public projection; deliberately drops arbitrary text and all external URLs.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "capability",
+      "label": "Explicit adapter capability",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Contracts parse and validate input. Policy consumes validated facts; no API calls or credentials. Evidence exposes only fixed public fields (free text, proof URLs, SHAs, identities and raw logs excluded). Adapters are capability declarations, not implementations. CLI and wrappers call contracts. Dashboard is generated, not authoritative."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/adapters/capabilities.py",
+          "anchor": "def available(capabilities,name):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_adapter(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/adapters/capabilities.py",
+          "anchor": "\"\"\"No adapter is installed. Capabilities must be verified by the actual host.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "paths",
+      "label": "Portable migration paths",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Historical pins identify frozen sources; never replace them with moving branch tips. No schema v2 until a breaking wire change is approved. No new live scheduler integrations in .2."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/contracts/paths.py",
+          "anchor": "def portable(path):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_portability.py",
+          "anchor": "def test_unsafe_paths(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/contracts/paths.py",
+          "anchor": "\"\"\"Portable paths and confined migration reads.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "private-ingress",
+      "label": "Bounded private ingress",
+      "documented_in": [
+        {
+          "path": "docs/architecture/v0.0.0.2-plan.md",
+          "anchor": "- Workflows are branch-specific and standard hosted only; design explicit CI triggers for future checkpoint branches without adding default-branch cron. Public data must be sanitized. No secret IDs, logs, credentials, or private prompts."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/evidence/public.py",
+          "anchor": "def public_receipt_from_json(payload):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_qualification.py",
+          "anchor": "def test_private_fields_dropped(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/evidence/public.py",
+          "anchor": "def public_receipt_from_json(payload):"
+        }
+      ]
+    },
+    {
+      "id": "stable-identity",
+      "label": "Stable repository identity",
+      "documented_in": [
+        {
+          "path": "docs/architecture/v0.0.0.2-plan.md",
+          "anchor": "- Product name may change; use stable internal IDs and repo identity rather than display name. Keep platform adapters optional; no mandatory Supabase, Notion or paid tooling."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/contracts/identity.py",
+          "anchor": "def same_repository(expected_id, observed, *, observation_verified):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_qualification.py",
+          "anchor": "def test_same_id_renamed(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/contracts/identity.py",
+          "anchor": "def same_repository(expected_id, observed, *, observation_verified):"
+        }
+      ]
+    },
+    {
+      "id": "schema-engine",
+      "label": "Separate Draft 2020-12 qualification",
+      "documented_in": [
+        {
+          "path": "docs/architecture/v0.0.0.2-plan.md",
+          "anchor": "- Validator checks count/authority but not exact allowed task IDs, cron grammar, timezone, schema version, target repository, unknown keys, missing fields or receipt consistency. Strict versioned schemas and semantic validation."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "tools/qualify_schema.py",
+          "anchor": "def main():"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tools/qualify_schema.py",
+          "anchor": "Draft202012Validator.check_schema(schema)"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "tools/qualify_schema.py",
+          "anchor": "def main():"
+        }
+      ]
+    },
+    {
+      "id": "observation-envelope",
+      "label": "Versioned private observation envelope",
+      "documented_in": [
+        {
+          "path": "docs/architecture/v0.0.0.3-execution.md",
+          "anchor": "# Execution evidence boundaries"
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/history/events.py",
+          "anchor": "def validate_event(event):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_history_contracts.py",
+          "anchor": "def test_valid_and_stable(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/history/events.py",
+          "anchor": "def validate_event(event):"
+        }
+      ]
+    },
+    {
+      "id": "local-history",
+      "label": "Bounded atomic local history",
+      "documented_in": [
+        {
+          "path": "docs/architecture/private-history.md",
+          "anchor": "# Private local history reference"
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/history/store.py",
+          "anchor": "def append(self,event,*,authenticated=False):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_local_history.py",
+          "anchor": "def test_append_replay_conflict_and_restart(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/history/store.py",
+          "anchor": "def append(self,event,*,authenticated=False):"
+        }
+      ]
+    },
+    {
+      "id": "schedule-reconciliation",
+      "label": "Scoped execution slot reconciliation",
+      "documented_in": [
+        {
+          "path": "docs/architecture/v0.0.0.3-execution.md",
+          "anchor": "# Execution evidence boundaries"
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/history/reconcile.py",
+          "anchor": "history_complete=False,simulation=False,source_verified=False):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_execution_history.py",
+          "anchor": "def test_reordered_and_competing_runs(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/history/reconcile.py",
+          "anchor": "history_complete=False,simulation=False,source_verified=False):"
+        }
+      ]
+    },
+    {
+      "id": "delivery-journal",
+      "label": "Durable delivery intent and highwater",
+      "documented_in": [
+        {
+          "path": "docs/architecture/v0.0.0.3-execution.md",
+          "anchor": "# Execution evidence boundaries"
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/history/store.py",
+          "anchor": "def prepare_delivery(self,key,binding,*,associated=False,delivery_supported=False,readback_supported=False,observation_verified=False):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_write_journal.py",
+          "anchor": "def test_suppressed_newer_observation_preserves_highwater(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/history/store.py",
+          "anchor": "def prepare_delivery(self,key,binding,*,associated=False,delivery_supported=False,readback_supported=False,observation_verified=False):"
+        }
+      ]
+    },
+    {
+      "id": "write-intent-journal",
+      "label": "Fenced private write intent",
+      "documented_in": [
+        {
+          "path": "docs/architecture/v0.0.0.3-execution.md",
+          "anchor": "# Execution evidence boundaries"
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/history/store.py",
+          "anchor": "def prepare_write(self,authority,*,expected):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_write_journal.py",
+          "anchor": "def test_write_intent_restart_readback(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/history/store.py",
+          "anchor": "def prepare_write(self,authority,*,expected):"
+        }
+      ]
+    },
+    {
+      "id": "host-response",
+      "label": "Read-only provider boundary classification",
+      "documented_in": [
+        {
+          "path": "docs/architecture/v0.0.0.3-execution.md",
+          "anchor": "# Execution evidence boundaries"
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/adapters/observation.py",
+          "anchor": "def classify_response(status,body,expected_repository_id,*,authenticated=False):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_execution_history.py",
+          "anchor": "def test_host_failures(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/adapters/observation.py",
+          "anchor": "def classify_response(status,body,expected_repository_id,*,authenticated=False):"
+        }
+      ]
+    },
+    {
+      "id": "static-history-report",
+      "label": "Redacted static history report",
+      "documented_in": [
+        {
+          "path": "docs/architecture/v0.0.0.3-execution.md",
+          "anchor": "# Execution evidence boundaries"
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/evidence/history_report.py",
+          "anchor": "def render(events):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_execution_history.py",
+          "anchor": "def test_report_has_no_private_fields(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/evidence/history_report.py",
+          "anchor": "def render(events):"
+        }
+      ]
+    },
+    {
+      "id": "storage-study",
+      "label": "Synthetic storage alternatives",
+      "documented_in": [
+        {
+          "path": "docs/decisions/v0.0.0.3-storage.md",
+          "anchor": "# Storage evaluation (not adoption)"
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "tools/evaluate_storage.py",
+          "anchor": "def postgres_case(items):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tools/evaluate_storage.py",
+          "anchor": "assert sum(bool(x) for x in results)==1 and contents(table)[\"race\"] in (\"a\",\"b\")"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "tools/evaluate_storage.py",
+          "anchor": "def postgres_case(items):"
+        }
+      ]
+    },
+    {
+      "id": "workload-qualification",
+      "label": "Synthetic multi-installation reference workload",
+      "documented_in": [
+        {
+          "path": "docs/architecture/private-history.md",
+          "anchor": "# Private local history reference"
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "tools/qualify_workload.py",
+          "anchor": "def run(n):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tools/qualify_workload.py",
+          "anchor": "assert adds==duplicates==conflicts==reconciled==5*n"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "tools/qualify_workload.py",
+          "anchor": "def run(n):"
+        }
+      ]
+    },
+    {
+      "id": "readme-smoke",
+      "label": "Commit-bound README first action",
+      "documented_in": [
+        {
+          "path": "README.md",
+          "anchor": "## Quickstart"
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": ".github/workflows/verify-layout-plan.yml",
+          "anchor": "python reader/tools/check_readme_hq.py --repo product --ref \"$GITHUB_SHA\" --smoke \"$RUNNER_TEMP/readme-smoke.json\" --require-smoke --receipt \"$RUNNER_TEMP/readme-audit.json\""
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tools/check.py",
+          "anchor": "print(\"PASS: strict offline template and receipt contract; no live scheduler execution asserted\")"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": ".github/workflows/verify-layout-plan.yml",
+          "anchor": "python reader/tools/check_readme_hq.py --repo product --ref \"$GITHUB_SHA\" --smoke \"$RUNNER_TEMP/readme-smoke.json\" --require-smoke --receipt \"$RUNNER_TEMP/readme-audit.json\""
+        }
+      ]
+    }
+  ],
+  "pull_request": 5
+}

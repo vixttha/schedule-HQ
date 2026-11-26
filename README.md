@@ -79,4 +79,4 @@ python tools/render_history.py --check
 python tools/qualify_workload.py --output workload-receipt.json
 ```
 
-The workload writes only synthetic temporary private directories and aggregate test results. Keep real history outside the worktree and never upload private history. SQL is evaluated only; PostgreSQL/Supabase remain optional candidates. The separate [README smoke specification](docs/architecture/readme-smoke.json) checks the documented first action in a fresh exact checkout.
+The workload writes only synthetic temporary private directories and aggregate test results. Keep real history outside the worktree and never upload private history. SQL is evaluated only; PostgreSQL/Supabase remain optional candidates. The separate [README smoke template](docs/architecture/readme-smoke.json) is bound to the exact runner checkout SHA before checking the documented first action in a fresh checkout.

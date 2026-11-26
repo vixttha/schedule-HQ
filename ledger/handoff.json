@@ -1,22 +1,6 @@
 {
   "schema_version": 1,
-  "active": {
-    "issue": 2,
-    "version": "v0.0.0.2",
-    "phase": "Head",
-    "next_action": "Owner explicitly authorizes .2 merge and issue closure for offline architecture scope; same-session review recorded. Independent review and live host qualification remain outstanding, not certified; carry to next checkpoint. Verify actual merged SHA before closure. No release or activation.",
-    "fix_sha": "62731879202e145c32ce4517f693f7568f5e20d1",
-    "candidate_sha": "62731879202e145c32ce4517f693f7568f5e20d1",
-    "pull_request": 3,
-    "evidence": [
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45794708618/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45794715404/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45795389031/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45795484450/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45795520897/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45795736361/attempts/1"
-    ]
-  },
+  "active": null,
   "history": [
     {
       "handoff": {
@@ -52,6 +36,29 @@
       "disposition": "rework",
       "decision": "Owner requests resolution of remaining qualification gaps before option 15. Return existing issue #2 to Worker for bounded offline schema, privacy and stable identity qualification; previous mechanical evidence retained, no independent acceptance asserted, no new runtime or live rename, no merge. Manual serial owner-authorized rework; no persistent host lease asserted.",
       "merged_sha": null
+    },
+    {
+      "handoff": {
+        "issue": 2,
+        "version": "v0.0.0.2",
+        "phase": "Head",
+        "next_action": "Owner explicitly authorizes .2 merge and issue closure for offline architecture scope; same-session review recorded. Independent review and live host qualification remain outstanding, not certified; carry to next checkpoint. Verify actual merged SHA before closure. No release or activation.",
+        "fix_sha": "62731879202e145c32ce4517f693f7568f5e20d1",
+        "candidate_sha": "62731879202e145c32ce4517f693f7568f5e20d1",
+        "pull_request": 3,
+        "evidence": [
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45794708618/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45794715404/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45795389031/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45795484450/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45795520897/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45795736361/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45796926490/attempts/1"
+        ]
+      },
+      "disposition": "integrated",
+      "decision": "Owner-authorized offline architecture integration and closure; actual main public-runner 4/4 pass. Independent review, live host enforcement, live rename and external smoke remain follow-ups. No release or activation.",
+      "merged_sha": "1d2028fed6ed731432fd6d8670ddb9f3e4e5a5c8"
     }
   ]
 }

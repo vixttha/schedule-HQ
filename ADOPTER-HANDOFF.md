@@ -1,12 +1,3 @@
-# Schedule HQ .2 qualification handoff
+# Schedule HQ — .2 integrated
 
-Source 62731879202e145c32ce4517f693f7568f5e20d1; main 1fe825f284aa36e30b31f8f7a927b3942d58b9c5; proposed merge 21d671db27b241962d6ab0dfd831fcc307060da9; actual merge absent. Source and merge trees identical (0742b31bffbdf90ba7302d4836ab17e11c730b22). 58/58 regression methods across Ubuntu and Windows for both source and proposed merge; 28 separate schema cases per checkout; 5/5 historical rollback per OS/checkout; 308 executions. Eight source/PR jobs passed. Provenistem ten existing features updated, structural catalog passed. Current Veraphify 61 nodes/92 edges, ten feature lookups, downloaded hashes and Git blob identities verified. All three historical/current archives retained permanently at 1454e1269c5b3cebc48e60c5be871237a7e33d77; temporary write-capable preservation workflow removed. No actual repository rename, live host enforcement or independent auditor acceptance claimed. No merge/closure/release. Language study is a proposal only; no new runtime adopted.
-
-https://github.com/vixttha/schedule-HQ/actions/runs/45794708618/attempts/1
-https://github.com/vixttha/schedule-HQ/actions/runs/45794715404/attempts/1
-https://github.com/vixttha/schedule-HQ/actions/runs/45795389031/attempts/1
-https://github.com/vixttha/schedule-HQ/actions/runs/45795484450/attempts/1
-https://github.com/vixttha/schedule-HQ/actions/runs/45795520897/attempts/1
-https://github.com/vixttha/schedule-HQ/actions/runs/45795736361/attempts/1
-
-Ledger validation detected run-only URLs in the first handoff; corrected to exact verified run-attempt URLs without altering the source candidate or historical ledger entries. Failed receipt validation: https://github.com/vixttha/schedule-HQ/actions/runs/45795983584.
+Owner authorized merge and closure. Actual main 1d2028fed6ed731432fd6d8670ddb9f3e4e5a5c8; [PR #3](https://github.com/vixttha/schedule-HQ/pull/3), [closed issue #2](https://github.com/vixttha/schedule-HQ/issues/2), [actual main public-runner](https://github.com/vixttha/schedule-HQ/actions/runs/45796926490/attempts/1), [frozen .2](https://github.com/vixttha/schedule-HQ/tree/freeze/v0.0.0.2). Exact tree matches candidate; 4/4 jobs passed, 154 test/case executions. Independent host, live rename, external smoke and independent review remain unqualified. Issue #1 historical assignment unchanged. No live activation or GitHub Release.

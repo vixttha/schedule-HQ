@@ -23,6 +23,13 @@
       "source_sha": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
       "source_path": "TASKS.md",
       "receipt": "https://github.com/vixttha/schedule-HQ/blob/e0f9e7acab71efa71fd4898625360966a5fa08a3/TASKS.md"
+    },
+    {
+      "kind": "test",
+      "claim": "Five-task registry and fixed task-specific schedule/authority validated; live host not tested.",
+      "source_sha": "ab6235f64c45c3739bcd2b138da0824e5082e8ef",
+      "source_path": "config/schedule.json",
+      "receipt": "https://github.com/vixttha/schedule-HQ/actions/runs/45792557636/attempts/1"
     }
   ],
   "release_membership": "NOT_ASSERTED"

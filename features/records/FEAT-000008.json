@@ -23,6 +23,13 @@
       "source_sha": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
       "source_path": "dependencies.json",
       "receipt": "https://github.com/vixttha/schedule-HQ/blob/e0f9e7acab71efa71fd4898625360966a5fa08a3/dependencies.json"
+    },
+    {
+      "kind": "test",
+      "claim": "Explicit capability boundary tested; no mandatory service or live adapter.",
+      "source_sha": "ab6235f64c45c3739bcd2b138da0824e5082e8ef",
+      "source_path": "src/schedule_hq/adapters/capabilities.py",
+      "receipt": "https://github.com/vixttha/schedule-HQ/actions/runs/45792557636/attempts/1"
     }
   ],
   "release_membership": "NOT_ASSERTED"

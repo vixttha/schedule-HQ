@@ -1,0 +1,3 @@
+# Schedule HQ .2 reconciliation
+
+All 10 existing ideas and features preserved; added one exact-candidate mechanical receipt to each feature. No lifecycle promotion, release membership or owner acceptance asserted. [Source](https://github.com/vixttha/schedule-HQ/commit/ab6235f64c45c3739bcd2b138da0824e5082e8ef); [public source run](https://github.com/vixttha/schedule-HQ/actions/runs/45792557636/attempts/1); [PR verification](https://github.com/vixttha/schedule-HQ/actions/runs/45792567307). Existing acceptance criteria remain unchanged. D-001–D-010 in source docs/decisions/v0.0.0.2.md. Actual scheduler, durable cursor, full rename, private-data ingress and independent acceptance remain outside proven scope.

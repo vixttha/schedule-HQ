@@ -2,7 +2,7 @@ name: Archive Schedule HQ exact candidate
 on:
   push:
     branches: [Veraphify]
-    paths: [".github/workflows/archive-schedule.yml", "manifests/**"]
+    paths: [".github/workflows/archive-schedule.yml", "manifests/**", "veraphifiy.mjs", "test-vault/**"]
 permissions:
   contents: read
 jobs:
@@ -35,6 +35,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          node veraphifiy.mjs --help
           test "$(git -C product rev-parse HEAD)" = 'e0f9e7acab71efa71fd4898625360966a5fa08a3'
           kit="$PWD/graphify-kit/versions/v0.0.8"
           python -m pip install --require-hashes --no-deps --only-binary=:all: -r "$kit/requirements.txt"

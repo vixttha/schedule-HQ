@@ -2,12 +2,19 @@
   "schema_version": 1,
   "active": {
     "version": "v0.0.0.4",
-    "phase": "Validate",
-    "next_action": "Verify exact source/proposed merge, isolated adoption and bounded read-only pilot. Source 7/7 passed, 112 methods per OS. First genuine host observation completed, associated result chat reference matches, delivery acknowledgment unknown; second observation required for suppression. Independent trial, second remote adoption and hard host permission boundary not certified. No merge.",
+    "phase": "Internal Auditor",
+    "next_action": "Same-session exact source/PR qualification: 14/14 public jobs, 112 current methods per OS, 34 schema cases, historical .1/.2/.3 rollback and isolated exact-repository adoption passed. Read-only scheduled host first observation completed; associated conversation routing references match, actual delivery acknowledgment unknown; second scheduled occurrence required to assess suppression. Pause/resume configuration verified. No independent adopter, separate remote target, hard permission boundary, live interrupted recovery or full host privacy qualification. No merge or closure. Obtain genuine remaining evidence.",
     "fix_sha": "82682c75e801956a0041f0f3db474484ada4473d",
     "candidate_sha": "82682c75e801956a0041f0f3db474484ada4473d",
     "pull_request": 7,
-    "evidence": [],
+    "evidence": [
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45828184414/attempts/1",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45828184682/attempts/1",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45828359454/attempts/1",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45828359268/attempts/1",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45828287875/attempts/1",
+      "https://github.com/vixttha/schedule-HQ/actions/runs/45828480145/attempts/1"
+    ],
     "issue": 6
   },
   "history": [

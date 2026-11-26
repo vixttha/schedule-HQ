@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "FEAT-000001",
+  "title": "Five coordinated scheduled tasks",
+  "summary": "Use one development task and four read-only tasks, each with a distinct purpose.",
+  "kind": "workflow",
+  "lifecycle_status": "in_progress",
+  "implementation_status": "in_progress",
+  "idea_ids": [
+    "IDEA-000001"
+  ],
+  "acceptance_criteria": [
+    "Use one development task and four read-only tasks, each with a distinct purpose.",
+    "Fresh exact-revision verification and owner review required."
+  ],
+  "testing": {
+    "status": "untested"
+  },
+  "evidence": [
+    {
+      "kind": "implementation",
+      "claim": "Candidate source contains initial contract or implementation; not verified",
+      "source_sha": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
+      "source_path": "TASKS.md",
+      "receipt": "https://github.com/vixttha/schedule-HQ/blob/e0f9e7acab71efa71fd4898625360966a5fa08a3/TASKS.md"
+    }
+  ],
+  "release_membership": "NOT_ASSERTED"
+}

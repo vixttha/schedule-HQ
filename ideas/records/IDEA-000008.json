@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "id": "IDEA-000008",
+  "title": "Independent portable ecosystem tools",
+  "summary": "Install VIB, Veraphify and Provenistem independently; database and external services optional.",
+  "kind": "process",
+  "origin": {
+    "created_by": "joint",
+    "source": "Owner-directed Schedule HQ foundation; public issue #1"
+  },
+  "lifecycle_status": "captured",
+  "implementation_status": "planned",
+  "testing": {
+    "status": "untested"
+  },
+  "importance": "medium",
+  "complexity": "unknown",
+  "categories": [
+    "schedule",
+    "engineering"
+  ],
+  "benefits": [
+    "Repeatable and auditable scheduled work"
+  ],
+  "risks": [
+    "Host-specific behavior must be verified"
+  ],
+  "related_ideas": [],
+  "evidence": [
+    {
+      "relation": "context",
+      "claim": "Candidate documents this requirement; not acceptance",
+      "repository": "vixttha/schedule-HQ",
+      "commit": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
+      "path": "dependencies.json"
+    }
+  ]
+}

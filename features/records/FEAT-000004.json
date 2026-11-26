@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "FEAT-000004",
+  "title": "Exact revision evidence",
+  "summary": "Separate source, preview merge, actual merge, installed release, metadata and verified bytes.",
+  "kind": "capability",
+  "lifecycle_status": "in_progress",
+  "implementation_status": "in_progress",
+  "idea_ids": [
+    "IDEA-000004"
+  ],
+  "acceptance_criteria": [
+    "Separate source, preview merge, actual merge, installed release, metadata and verified bytes.",
+    "Fresh exact-revision verification and owner review required."
+  ],
+  "testing": {
+    "status": "untested"
+  },
+  "evidence": [
+    {
+      "kind": "implementation",
+      "claim": "Candidate source contains initial contract or implementation; not verified",
+      "source_sha": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
+      "source_path": "examples/receipt.json",
+      "receipt": "https://github.com/vixttha/schedule-HQ/blob/e0f9e7acab71efa71fd4898625360966a5fa08a3/examples/receipt.json"
+    }
+  ],
+  "release_membership": "NOT_ASSERTED"
+}

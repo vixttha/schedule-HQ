@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "FEAT-000009",
+  "title": "Rename-safe project identity",
+  "summary": "Keep stable task IDs and schema independent of temporary project branding.",
+  "kind": "capability",
+  "lifecycle_status": "in_progress",
+  "implementation_status": "in_progress",
+  "idea_ids": [
+    "IDEA-000009"
+  ],
+  "acceptance_criteria": [
+    "Keep stable task IDs and schema independent of temporary project branding.",
+    "Fresh exact-revision verification and owner review required."
+  ],
+  "testing": {
+    "status": "untested"
+  },
+  "evidence": [
+    {
+      "kind": "implementation",
+      "claim": "Candidate source contains initial contract or implementation; not verified",
+      "source_sha": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
+      "source_path": "schedule.json",
+      "receipt": "https://github.com/vixttha/schedule-HQ/blob/e0f9e7acab71efa71fd4898625360966a5fa08a3/schedule.json"
+    }
+  ],
+  "release_membership": "NOT_ASSERTED"
+}

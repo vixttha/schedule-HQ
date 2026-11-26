@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "FEAT-000003",
+  "title": "Same conversation delivery",
+  "summary": "Preserve associated conversation and refuse substitute threads or agent delegation.",
+  "kind": "workflow",
+  "lifecycle_status": "in_progress",
+  "implementation_status": "in_progress",
+  "idea_ids": [
+    "IDEA-000003"
+  ],
+  "acceptance_criteria": [
+    "Preserve associated conversation and refuse substitute threads or agent delegation.",
+    "Fresh exact-revision verification and owner review required."
+  ],
+  "testing": {
+    "status": "untested"
+  },
+  "evidence": [
+    {
+      "kind": "implementation",
+      "claim": "Candidate source contains initial contract or implementation; not verified",
+      "source_sha": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
+      "source_path": "WORKFLOW.md",
+      "receipt": "https://github.com/vixttha/schedule-HQ/blob/e0f9e7acab71efa71fd4898625360966a5fa08a3/WORKFLOW.md"
+    }
+  ],
+  "release_membership": "NOT_ASSERTED"
+}

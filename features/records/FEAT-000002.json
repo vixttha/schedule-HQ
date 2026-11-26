@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "FEAT-000002",
+  "title": "Exclusive mutation lane",
+  "summary": "Fail closed on ambiguous ownership; require current canonical handoff and lease.",
+  "kind": "workflow",
+  "lifecycle_status": "in_progress",
+  "implementation_status": "in_progress",
+  "idea_ids": [
+    "IDEA-000002"
+  ],
+  "acceptance_criteria": [
+    "Fail closed on ambiguous ownership; require current canonical handoff and lease.",
+    "Fresh exact-revision verification and owner review required."
+  ],
+  "testing": {
+    "status": "untested"
+  },
+  "evidence": [
+    {
+      "kind": "implementation",
+      "claim": "Candidate source contains initial contract or implementation; not verified",
+      "source_sha": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
+      "source_path": "WORKFLOW.md",
+      "receipt": "https://github.com/vixttha/schedule-HQ/blob/e0f9e7acab71efa71fd4898625360966a5fa08a3/WORKFLOW.md"
+    }
+  ],
+  "release_membership": "NOT_ASSERTED"
+}

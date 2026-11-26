@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "FEAT-000007",
+  "title": "Free public runner qualification",
+  "summary": "Use standard Ubuntu and Windows hosted runners with explicit test evidence.",
+  "kind": "integration",
+  "lifecycle_status": "in_progress",
+  "implementation_status": "in_progress",
+  "idea_ids": [
+    "IDEA-000007"
+  ],
+  "acceptance_criteria": [
+    "Use standard Ubuntu and Windows hosted runners with explicit test evidence.",
+    "Fresh exact-revision verification and owner review required."
+  ],
+  "testing": {
+    "status": "untested"
+  },
+  "evidence": [
+    {
+      "kind": "implementation",
+      "claim": "Candidate source contains initial contract or implementation; not verified",
+      "source_sha": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
+      "source_path": ".github/workflows/verify-template.yml",
+      "receipt": "https://github.com/vixttha/schedule-HQ/blob/e0f9e7acab71efa71fd4898625360966a5fa08a3/.github/workflows/verify-template.yml"
+    }
+  ],
+  "release_membership": "NOT_ASSERTED"
+}

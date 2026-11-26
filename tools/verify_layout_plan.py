@@ -12,7 +12,7 @@ def main():
     plan = json.loads((ROOT / "docs/architecture/path-map.json").read_text(encoding="utf-8"))
     src = freeze["components"]["Schedule-HQ-Template"]
     assert plan["source_commit"] == src["commit"]
-    assert plan["status"] == "proposed_pending_owner_approval"
+    assert plan["status"] == "approved_incremental_migration"
     mapping = plan["mapping"]
     inventory = {f["path"]: f["blob"] for f in src["files"]}
     assert len(mapping) == len(inventory)
@@ -23,8 +23,8 @@ def main():
         assert not p.is_absolute() and ".." not in p.parts and "\\" not in m["to"]
     for path, blob in inventory.items():
         assert git("rev-parse", src["commit"] + ":" + path) == blob, path
-        assert git("rev-parse", "HEAD:" + path) == blob, path
-    print(f"PASS: {len(inventory)} frozen template paths mapped exactly once; original blobs unchanged; plan only")
+        assert (ROOT / path).is_file(), path  # compatibility surface retained
+    print(f"PASS: {len(inventory)} frozen template paths mapped exactly once; frozen source blobs verified; compatibility paths retained")
 
 if __name__ == "__main__":
     main()

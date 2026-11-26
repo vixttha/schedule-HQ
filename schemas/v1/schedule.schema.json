@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "checkpoint",
+    "display_name",
+    "target_repository",
+    "timezone",
+    "conversation_binding",
+    "enabled",
+    "tasks"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "checkpoint": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_repository": {
+      "const": "OWNER/REPO"
+    },
+    "timezone": {
+      "const": "Etc/UTC"
+    },
+    "conversation_binding": {
+      "const": "existing-associated-conversation"
+    },
+    "enabled": {
+      "const": false
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "cron",
+          "authority",
+          "purpose"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "development",
+              "handoff",
+              "verification",
+              "audit",
+              "release"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cron": {
+            "enum": [
+              "0 * * * *",
+              "15 * * * *",
+              "30 * * * *",
+              "45 * * * *",
+              "0 */4 * * *"
+            ]
+          },
+          "authority": {
+            "enum": [
+              "read-only",
+              "write-if-authorized"
+            ]
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "repository_id": 1472890396,
+  "baseline_freeze": "139dc64a15a069a0a2bd570c9e50ca664f8e4cfc",
+  "components": {
+    "vib": {
+      "source_repository": "vixttha/Version-Issues-Hub",
+      "source_sha": "26e9fe8c019a33c5f84f77a37da70925505204e3",
+      "version": "v0.0.0.36 engineering",
+      "branch": "Version-Issues-Hub",
+      "initial_install_sha": "164838110fe5a28582d0625a4a92ba89e305c0dc",
+      "frozen_adopter_sha": "deea71390bf19e6c47b0728d4ee87be875bd68a6",
+      "tested_sha": "deea71390bf19e6c47b0728d4ee87be875bd68a6",
+      "proof_run": 45786778760
+    },
+    "veraphify": {
+      "source_repository": "vixttha/Veraphify",
+      "source_sha": "66e822b56528c5f3e7b7730709d4b472ae2d5f1e",
+      "version": "v0.0.9 preview",
+      "branch": "Veraphify",
+      "initial_install_sha": "7717843586ae5c5be85f0599caafb2cf25d758bc",
+      "frozen_adopter_sha": "51b01c5ed29ca7e8c3470171b3c0e837379e9c3c",
+      "tested_sha": "463c0ff4da13462b2e15141b90df26a39e52c994",
+      "proof_run": 45787326454
+    },
+    "provenistem": {
+      "source_repository": "vixttha/Provenistem",
+      "source_sha": "f676059bf15e466d18a0d49c317920c8c1160418",
+      "version": "v0.0.2 + merged repairs",
+      "branch": "Provenistem",
+      "initial_install_sha": "f37010335490d13f0566dc09d03cd7644a2f2158",
+      "frozen_adopter_sha": "0865cb3302b8a285181c510f28db5d36cabfeee5",
+      "tested_sha": "0865cb3302b8a285181c510f28db5d36cabfeee5",
+      "proof_run": 45786724761
+    }
+  }
+}

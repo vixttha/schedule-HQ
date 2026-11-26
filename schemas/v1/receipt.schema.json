@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "example",
+    "task_id",
+    "scheduled_at",
+    "started_at",
+    "completed_at",
+    "source_head",
+    "base_sha",
+    "proposed_merge_sha",
+    "actual_merge_sha",
+    "installed_version",
+    "classification",
+    "positives",
+    "negatives",
+    "proof_links",
+    "next_action"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "example": {
+      "type": "boolean"
+    },
+    "task_id": {
+      "enum": [
+        "development",
+        "handoff",
+        "verification",
+        "audit",
+        "release"
+      ]
+    },
+    "scheduled_at": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "completed_at": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "source_head": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "base_sha": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "proposed_merge_sha": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "actual_merge_sha": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "installed_version": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "classification": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "BLOCKED",
+        "NOT RUN",
+        "UNVERIFIED"
+      ]
+    },
+    "positives": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "negatives": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proof_links": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_action": {
+      "type": "string"
+    }
+  }
+}

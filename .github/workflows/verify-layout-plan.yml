@@ -21,4 +21,5 @@ jobs:
           python-version: '3.12'
       - run: python tools/verify_layout_plan.py
       - run: python tools/check.py
+      - run: python tools/generate_views.py --check
       - run: python -m unittest discover -s tests -v

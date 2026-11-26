@@ -2,7 +2,7 @@
   "schema_version": 1,
   "checkpoint": "v0.0.0.2",
   "issue": 2,
-  "status": "proposed_pending_owner_approval",
+  "status": "approved_incremental_migration",
   "freeze_commit": "139dc64a15a069a0a2bd570c9e50ca664f8e4cfc",
   "source_commit": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
   "mapping": [
@@ -74,5 +74,17 @@
     "No live scheduler activation",
     "No new authority from generated output",
     "Preserve compatibility and rollback"
+  ],
+  "approval": "https://github.com/vixttha/schedule-HQ/issues/2#issuecomment-7187574577",
+  "implemented_batch": [
+    "config/schedule.json",
+    "config/dependencies.lock.json",
+    "schemas/v1/schedule.schema.json",
+    "schemas/v1/receipt.schema.json",
+    "src/schedule_hq/contracts/validation.py",
+    "prompts/common.md",
+    "prompts/roles/",
+    "dashboard/index.html",
+    "tools/check.py"
   ]
 }

@@ -21,6 +21,11 @@ def main():
     for m in mapping:
         p = PurePosixPath(m["to"])
         assert not p.is_absolute() and ".." not in p.parts and "\\" not in m["to"]
+    from check import load
+    from schedule_hq.contracts.paths import confined, unique_paths
+    unique_paths([m["to"] for m in mapping])
+    for m in mapping:
+        assert confined(ROOT,m["to"]).is_file(), m["to"]
     for path, blob in inventory.items():
         assert git("rev-parse", src["commit"] + ":" + path) == blob, path
         assert (ROOT / path).is_file(), path  # compatibility surface retained

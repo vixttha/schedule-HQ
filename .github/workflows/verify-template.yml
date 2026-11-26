@@ -2,8 +2,6 @@ name: Verify Schedule HQ template
 on:
   push:
     branches: [Schedule-HQ-Template]
-  pull_request:
-    branches: [main]
 permissions:
   contents: read
 jobs:

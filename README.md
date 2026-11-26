@@ -43,7 +43,7 @@ The first command reports `PASS: strict offline template and receipt contract; n
 
 ## Evidence and status
 
-The frozen template source [e0f9e7a](https://github.com/vixttha/schedule-HQ/commit/e0f9e7acab71efa71fd4898625360966a5fa08a3) passed five tests each on [Ubuntu and Windows](https://github.com/vixttha/schedule-HQ/actions/runs/45786560547). The source-specific graph has [verified archive pins](https://github.com/vixttha/schedule-HQ/blob/51b01c5ed29ca7e8c3470171b3c0e837379e9c3c/archive/v0.0.0.1-pins.json); this evidence predates the homepage publication. See the latest CI for the actual published revision. Live task execution, exclusive lease enforcement, same-conversation delivery, independent acceptance and production readiness have not been established. The next architecture checkpoint remains separate.
+The frozen template source [e0f9e7a](https://github.com/vixttha/schedule-HQ/commit/e0f9e7acab71efa71fd4898625360966a5fa08a3) passed five tests each on [Ubuntu and Windows](https://github.com/vixttha/schedule-HQ/actions/runs/45786560547). The source-specific graph has [verified archive pins](https://github.com/vixttha/schedule-HQ/blob/51b01c5ed29ca7e8c3470171b3c0e837379e9c3c/archive/v0.0.0.1-pins.json); this evidence predates the homepage publication. See the latest CI for the actual candidate revision. The historical publication remains pinned in [publication record](publication/v0.0.0.1.json). Live task execution, exclusive lease enforcement, same-conversation delivery, independent acceptance and production readiness have not been established. The next architecture checkpoint remains separate.
 
 ## Independent engineering tools
 

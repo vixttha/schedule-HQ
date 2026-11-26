@@ -1,7 +1,7 @@
 name: Verify frozen baseline and proposed layout
 on:
   push:
-    branches: [plan/checkpoint-v0.0.0.2, main]
+    branches: ['plan/checkpoint-v*', main]
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened, edited]
@@ -27,6 +27,13 @@ jobs:
       - run: python tools/verify_layout_plan.py
       - run: python tools/check.py
       - run: python tools/generate_views.py --check
+      - run: python tools/render_history.py --check
+      - run: python tools/qualify_workload.py --output workload-receipt.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: workload-receipt-${{ matrix.os }}
+          path: workload-receipt.json
+          if-no-files-found: error
       - run: python -m unittest discover -s tests -v
       - name: Verify rollback in a separate checkout
         shell: bash
@@ -36,6 +43,10 @@ jobs:
           (cd "$RUNNER_TEMP/schedule-rollback" && python -B tools/check.py && python -B -m unittest discover -s tests -v && python -B tools/verify_publication.py)
           test -z "$(git -C "$RUNNER_TEMP/schedule-rollback" status --porcelain)"
           git worktree remove "$RUNNER_TEMP/schedule-rollback"
+          git worktree add --detach "$RUNNER_TEMP/schedule-rollback2" 1d2028fed6ed731432fd6d8670ddb9f3e4e5a5c8
+          (cd "$RUNNER_TEMP/schedule-rollback2" && python -B tools/check.py && python -B -m unittest discover -s tests -v && python -B tools/generate_views.py --check)
+          test -z "$(git -C "$RUNNER_TEMP/schedule-rollback2" status --porcelain)"
+          git worktree remove "$RUNNER_TEMP/schedule-rollback2"
   reader:
     if: github.event.repository.visibility == 'public' && github.event.repository.private == false
     runs-on: ubuntu-latest
@@ -61,7 +72,8 @@ jobs:
           set -euo pipefail
           test "$(git -C reader rev-parse HEAD)" = '43e29074099742a2c73741176286a44ccdf861a1'
           test "$(git -C product rev-parse HEAD)" = "$GITHUB_SHA"
-          python reader/tools/check_readme_hq.py --repo product --ref "$GITHUB_SHA" --receipt "$RUNNER_TEMP/readme-audit.json"
+          python -c 'import json,os,pathlib; p=pathlib.Path("product/docs/architecture/readme-smoke.json"); d=json.loads(p.read_text()); d["commit"]=os.environ["GITHUB_SHA"]; pathlib.Path(os.environ["RUNNER_TEMP"],"readme-smoke.json").write_text(json.dumps(d))'
+          python reader/tools/check_readme_hq.py --repo product --ref "$GITHUB_SHA" --smoke "$RUNNER_TEMP/readme-smoke.json" --require-smoke --receipt "$RUNNER_TEMP/readme-audit.json"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: readme-hq-audit

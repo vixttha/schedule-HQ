@@ -38,5 +38,21 @@ def main():
         try: validate_receipt(data)
         except ValueError: count+=1
         else: raise AssertionError("semantic fail-open")
+    # Resolve the local schema reference without network access.
+    from schedule_hq.history.events import validate_event
+    schema=load(ROOT/"schemas/v1/observation.schema.json")
+    Draft202012Validator.check_schema(schema)
+    assert schema["properties"]["receipt"]=={"$ref":"receipt.schema.json"}
+    schema["properties"]["receipt"]=load(ROOT/"schemas/v1/receipt.schema.json")
+    engine=Draft202012Validator(schema)
+    e=dict(schema_version=1,repository_id=1,installation="fixture",provider="fixture",run_id="r1",
+           attempt=1,sequence=1,observed_at="2026-01-01T01:00:00Z",provenance="synthetic",receipt=good)
+    for data,want in [(e,True),(e|{"repository_id":True},False),(e|{"attempt":0},False),
+                      (e|{"installation":"../x"},False),(e|{"extra":"x"},False),(e|{"provenance":"bad"},False)]:
+        if engine.is_valid(data)!=want: raise AssertionError("unexpected observation schema verdict")
+        try: validate_event(data); semantic=True
+        except ValueError: semantic=False
+        if semantic!=want: raise AssertionError("unexpected observation semantic verdict")
+        count+=1
     print(f"PASS: {count} separate-engine structural/semantic qualification cases; no independent agent or host trial asserted")
 if __name__=="__main__": main()

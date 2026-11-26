@@ -218,8 +218,8 @@
       "label": "Bounded private ingress",
       "documented_in": [
         {
-          "path": "docs/architecture/contracts.md",
-          "anchor": "Qualification refinement: nominal schedule and observed execution are separate; a host may start early."
+          "path": "docs/architecture/v0.0.0.2-plan.md",
+          "anchor": "- Workflows are branch-specific and standard hosted only; design explicit CI triggers for future checkpoint branches without adding default-branch cron. Public data must be sanitized. No secret IDs, logs, credentials, or private prompts."
         }
       ],
       "implemented_in": [
@@ -246,8 +246,8 @@
       "label": "Stable repository identity",
       "documented_in": [
         {
-          "path": "docs/architecture/contracts.md",
-          "anchor": "Qualification refinement: nominal schedule and observed execution are separate; a host may start early."
+          "path": "docs/architecture/v0.0.0.2-plan.md",
+          "anchor": "- Product name may change; use stable internal IDs and repo identity rather than display name. Keep platform adapters optional; no mandatory Supabase, Notion or paid tooling."
         }
       ],
       "implemented_in": [
@@ -274,8 +274,8 @@
       "label": "Separate Draft 2020-12 qualification",
       "documented_in": [
         {
-          "path": "docs/architecture/contracts.md",
-          "anchor": "Qualification refinement: nominal schedule and observed execution are separate; a host may start early."
+          "path": "docs/architecture/v0.0.0.2-plan.md",
+          "anchor": "- Validator checks count/authority but not exact allowed task IDs, cron grammar, timezone, schema version, target repository, unknown keys, missing fields or receipt consistency. Strict versioned schemas and semantic validation."
         }
       ],
       "implemented_in": [

@@ -1,0 +1,57 @@
+name: Verify v0.0.0.1 publication
+on:
+  push:
+    branches: [main, publish/v0.0.0.1]
+permissions:
+  contents: read
+jobs:
+  foundation:
+    if: github.event.repository.visibility == 'public' && github.event.repository.private == false
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+        with:
+          python-version: '3.12'
+      - run: python tools/check.py
+      - run: python -m unittest discover -s tests -v
+      - run: python tools/verify_publication.py
+  reader:
+    if: github.event.repository.visibility == 'public' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          path: product
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: vixttha/README-HQ
+          ref: 43e29074099742a2c73741176286a44ccdf861a1
+          path: reader
+          persist-credentials: false
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --require-hashes -r reader/tools/requirements.txt
+      - name: Audit pinned homepage
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C reader rev-parse HEAD)" = '43e29074099742a2c73741176286a44ccdf861a1'
+          test "$(git -C product rev-parse HEAD)" = "$GITHUB_SHA"
+          python reader/tools/check_readme_hq.py --repo product --ref "$GITHUB_SHA" --receipt "$RUNNER_TEMP/readme-audit.json"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: readme-hq-audit
+          path: ${{ runner.temp }}/readme-audit.json
+          if-no-files-found: error

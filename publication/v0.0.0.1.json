@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "checkpoint": "v0.0.0.1",
+  "frozen_source": "139dc64a15a069a0a2bd570c9e50ca664f8e4cfc",
+  "template_source": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
+  "prior_main": "ca17ceae56d8f42523db43a1bc3090496ca22866",
+  "readme_hq": {
+    "source_sha": "43e29074099742a2c73741176286a44ccdf861a1",
+    "adoption_sha": "ccd2785b5e513a221fc7d0a5e0b733a91fefe630",
+    "mode": "pinned_remote_read_only"
+  },
+  "status": "owner_authorized_foundation_publication_not_release"
+}

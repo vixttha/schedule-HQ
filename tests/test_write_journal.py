@@ -17,9 +17,9 @@ class JournalTests(unittest.TestCase):
         token=self.h.prepare_write(self.authority,expected="b"*40)
         restored=History(self.root,123,"test-install")
         with self.assertRaises(ValueError):restored.prepare_write(self.authority,expected="c"*40)
-        self.assertEqual(restored.reconcile_write(token,self.authority,observed="b"*40",
+        self.assertEqual(restored.reconcile_write(token,self.authority,observed="b"*40,
              observation_verified=True,intent_verified=True),"ALREADY_APPLIED")
-        self.assertEqual(restored.reconcile_write(token,self.authority,observed="b"*40",
+        self.assertEqual(restored.reconcile_write(token,self.authority,observed="b"*40,
              observation_verified=True,intent_verified=True),"ALREADY_APPLIED")
         with self.assertRaises(ValueError):restored.prepare_write(self.authority,expected="b"*40)
     def test_write_denied_no_journal(self):
@@ -30,11 +30,11 @@ class JournalTests(unittest.TestCase):
         self.assertFalse((self.root/"history.json").exists())
     def test_ambiguous_readback_does_not_clear(self):
         token=self.h.prepare_write(self.authority,expected="b"*40)
-        self.assertEqual(self.h.reconcile_write(token,self.authority,observed="a"*40",
+        self.assertEqual(self.h.reconcile_write(token,self.authority,observed="a"*40,
             observation_verified=True,intent_verified=True),"REAUTHORIZE")
-        self.assertEqual(self.h.reconcile_write(token,self.authority,observed="c"*40",
+        self.assertEqual(self.h.reconcile_write(token,self.authority,observed="c"*40,
             observation_verified=True,intent_verified=True),"CONFLICT")
-        self.assertEqual(self.h.reconcile_write(token,self.authority,observed="b"*40",
+        self.assertEqual(self.h.reconcile_write(token,self.authority,observed="b"*40,
             observation_verified=False,intent_verified=True),"BLOCKED")
         with self.assertRaises(ValueError):self.h.prepare_write(self.authority,expected="c"*40)
     def test_process_abandonment_preserves_history(self):
@@ -61,3 +61,16 @@ class JournalTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             other=History(Path(d),123,"test-install");other.restore_empty(payload)
             with self.assertRaises(ValueError):other.prepare_write(self.authority,expected="c"*40)
+
+    def test_suppressed_newer_observation_preserves_highwater(self):
+        from schedule_hq.history.events import event_key
+        first=observation(provenance="authenticated")
+        newer=observation(provenance="authenticated",sequence=3,observed_at="2026-01-01T01:03:00Z")
+        old=observation(provenance="authenticated",sequence=2,observed_at="2026-01-01T01:02:00Z")
+        old["receipt"]["next_action"]="obsolete changed result"
+        for e in (first,newer,old):self.h.append(e,authenticated=True)
+        kw=dict(associated=True,delivery_supported=True,readback_supported=True,observation_verified=True)
+        p=self.h.prepare_delivery(event_key(first),"private",**kw)
+        self.h.ack_delivery(p["intent"],"private","ack-1",verified=True)
+        self.assertEqual(self.h.prepare_delivery(event_key(newer),"private",**kw)["decision"],"SUPPRESS")
+        self.assertEqual(self.h.prepare_delivery(event_key(old),"private",**kw)["decision"],"STALE")

@@ -1,24 +1,6 @@
 {
   "schema_version": 1,
-  "active": {
-    "issue": 4,
-    "version": "v0.0.0.3",
-    "phase": "Head",
-    "next_action": "Owner explicitly accepts v0.0.0.3 as qualified OFFLINE execution-evidence checkpoint and authorizes merge, actual-main verification, freeze and issue #4 closure. Genuine host lease, delivery, shared durability, live rename and host-specific privacy/browser checks are deferred to a future checkpoint; independent review remains NOT RUN and is not a claim of this offline owner acceptance. No live activation, production database, GitHub Release or next version authorization. Verify actual main before closure.",
-    "fix_sha": "68ef756efb5c723d1c85eff3241ec91b5e59e271",
-    "candidate_sha": "68ef756efb5c723d1c85eff3241ec91b5e59e271",
-    "pull_request": 5,
-    "evidence": [
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45815052657/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45815059816/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45815052672/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45815059888/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45815134473/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45815375357/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45815411103/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45815547881/attempts/1"
-    ]
-  },
+  "active": null,
   "history": [
     {
       "handoff": {
@@ -101,6 +83,32 @@
       "disposition": "rework",
       "decision": "Owner requested finish .3; repair two recorded audit findings within same issue; no lease, live activation or gate waiver asserted.",
       "merged_sha": null
+    },
+    {
+      "handoff": {
+        "issue": 4,
+        "version": "v0.0.0.3",
+        "phase": "Head",
+        "next_action": "Owner explicitly accepts v0.0.0.3 as qualified OFFLINE execution-evidence checkpoint and authorizes merge, actual-main verification, freeze and issue #4 closure. Genuine host lease, delivery, shared durability, live rename and host-specific privacy/browser checks are deferred to a future checkpoint; independent review remains NOT RUN and is not a claim of this offline owner acceptance. No live activation, production database, GitHub Release or next version authorization. Verify actual main before closure.",
+        "fix_sha": "68ef756efb5c723d1c85eff3241ec91b5e59e271",
+        "candidate_sha": "68ef756efb5c723d1c85eff3241ec91b5e59e271",
+        "pull_request": 5,
+        "evidence": [
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45815052657/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45815059816/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45815052672/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45815059888/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45815134473/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45815375357/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45815411103/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45815547881/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45816401623/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45816401759/attempts/1"
+        ]
+      },
+      "disposition": "integrated",
+      "decision": "Owner-approved offline .3 scope; actual main 7/7 public runner jobs passed, six ZIPs inspected and verified; frozen exact merged SHA; issue #4 closed completed. Real scheduler host lease/fencing, delivery, shared durability, authorized rename and host privacy/browser qualification explicitly deferred. Independent review NOT RUN; README external/editorial checks not certified by smoke. No activation, release or next version.",
+      "merged_sha": "7b4575b42008f71c4c3a014bc6f23c0f1f89793d"
     }
   ]
 }

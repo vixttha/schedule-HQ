@@ -27,7 +27,7 @@
     {
       "issue": 4,
       "version": "v0.0.0.3",
-      "state": "in_progress",
+      "state": "integrated",
       "acceptance": [
         "Preserve merged .2, prior version assignments and rollback; durable execution-history and delivery-cursor design with negative replay cases.",
         "Qualify authenticated identity, capability boundaries and write recovery without assuming live scheduler enforcement.",

@@ -2,7 +2,7 @@
 
 **A portable operating template for scheduled engineering tasks.**
 
-Version **v0.0.0.3** · Execution evidence candidate · Working project name
+Version **v0.0.0.4** · Practical adoption candidate · Working project name
 
 Schedule HQ organizes scheduled AI-assisted engineering work into five coordinated tasks. It keeps one conditional writer, four read-only monitors, revision-bound evidence and a single associated conversation. It is a template, not a hosted scheduler or an automatic permission system.
 
@@ -80,3 +80,7 @@ python tools/qualify_workload.py --output workload-receipt.json
 ```
 
 The workload writes only synthetic temporary private directories and aggregate test results. Keep real history outside the worktree and never upload private history. SQL is evaluated only; PostgreSQL/Supabase remain optional candidates. The separate [README smoke template](docs/architecture/readme-smoke.json) is bound to the exact runner checkout SHA before checking the documented first action in a fresh checkout.
+
+## Read-only adoption
+
+[Installation and rollback guide](docs/architecture/adoption.md). Generate five configured read-only prompts from a pinned checkout; no task is activated by the installer.

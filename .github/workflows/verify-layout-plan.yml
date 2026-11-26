@@ -15,7 +15,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
@@ -35,6 +35,26 @@ jobs:
           path: workload-receipt.json
           if-no-files-found: error
       - run: python -m unittest discover -s tests -v
+      - name: Qualify local adoption against an isolated checkout of this public repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          fixture="$RUNNER_TEMP/shq-adoption"
+          git clone --no-local --no-hardlinks "$GITHUB_WORKSPACE" "$fixture"
+          git -C "$fixture" checkout --detach "$GITHUB_SHA"
+          git -C "$fixture" checkout -b schedule-hq
+          git -C "$fixture" remote set-url origin "https://github.com/$GITHUB_REPOSITORY.git"
+          python -B tools/adopt.py install --checkout "$fixture" --repository "$GITHUB_REPOSITORY" --repository-id "$GITHUB_REPOSITORY_ID"
+          python -B tools/adopt.py verify --checkout "$fixture" --repository "$GITHUB_REPOSITORY" --repository-id "$GITHUB_REPOSITORY_ID"
+          python -B tools/adopt.py uninstall --checkout "$fixture" --repository "$GITHUB_REPOSITORY" --repository-id "$GITHUB_REPOSITORY_ID"
+          test -d "$fixture/.schedule-hq"
+          python -B tools/adopt.py uninstall --apply --checkout "$fixture" --repository "$GITHUB_REPOSITORY" --repository-id "$GITHUB_REPOSITORY_ID"
+          test ! -e "$fixture/.schedule-hq"
+          test -f "$fixture/.schedule-hq-removed/manifest.json"
+          test "$(git -C "$fixture" rev-parse HEAD)" = "$GITHUB_SHA"
+          git -C "$fixture" diff --exit-code HEAD
+          echo "PASS: isolated exact-source repository adoption, dry run, retirement and tracked files unchanged; no remote push"
       - name: Verify rollback in a separate checkout
         shell: bash
         run: |
@@ -47,6 +67,10 @@ jobs:
           (cd "$RUNNER_TEMP/schedule-rollback2" && python -B tools/check.py && python -B -m unittest discover -s tests -v && python -B tools/generate_views.py --check)
           test -z "$(git -C "$RUNNER_TEMP/schedule-rollback2" status --porcelain)"
           git worktree remove "$RUNNER_TEMP/schedule-rollback2"
+          git worktree add --detach "$RUNNER_TEMP/schedule-rollback3" 7b4575b42008f71c4c3a014bc6f23c0f1f89793d
+          (cd "$RUNNER_TEMP/schedule-rollback3" && python -B tools/check.py && python -B -m unittest discover -s tests -v && python -B tools/generate_views.py --check)
+          test -z "$(git -C "$RUNNER_TEMP/schedule-rollback3" status --porcelain)"
+          git worktree remove "$RUNNER_TEMP/schedule-rollback3"
   reader:
     if: github.event.repository.visibility == 'public' && github.event.repository.private == false
     runs-on: ubuntu-latest

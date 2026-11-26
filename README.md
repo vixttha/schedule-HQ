@@ -2,7 +2,7 @@
 
 **A portable operating template for scheduled engineering tasks.**
 
-Version **v0.0.0.2** · Architecture candidate · Working project name
+Version **v0.0.0.3** · Execution evidence candidate · Working project name
 
 Schedule HQ organizes scheduled AI-assisted engineering work into five coordinated tasks. It keeps one conditional writer, four read-only monitors, revision-bound evidence and a single associated conversation. It is a template, not a hosted scheduler or an automatic permission system.
 
@@ -39,11 +39,11 @@ The first command reports `PASS: strict offline template and receipt contract; n
 | Inspect a sample receipt | [Receipt example](examples/receipt.json) |
 | View the static schedule | [Dashboard](dashboard.html) |
 | Check the original foundation | [Frozen source and evidence](freeze/v0.0.0.1.json) |
-| Find current development | [Architecture issue #2](https://github.com/vixttha/schedule-HQ/issues/2) |
+| Find current development | [Execution evidence issue #4](https://github.com/vixttha/schedule-HQ/issues/4) |
 
 ## Evidence and status
 
-The frozen template source [e0f9e7a](https://github.com/vixttha/schedule-HQ/commit/e0f9e7acab71efa71fd4898625360966a5fa08a3) passed five tests each on [Ubuntu and Windows](https://github.com/vixttha/schedule-HQ/actions/runs/45786560547). The source-specific graph has [verified archive pins](https://github.com/vixttha/schedule-HQ/blob/51b01c5ed29ca7e8c3470171b3c0e837379e9c3c/archive/v0.0.0.1-pins.json); this evidence predates the homepage publication. See the latest CI for the actual candidate revision. The historical publication remains pinned in [publication record](publication/v0.0.0.1.json). Live task execution, exclusive lease enforcement, same-conversation delivery, independent acceptance and production readiness have not been established. The next architecture checkpoint remains separate.
+The frozen template source [e0f9e7a](https://github.com/vixttha/schedule-HQ/commit/e0f9e7acab71efa71fd4898625360966a5fa08a3) passed five tests each on [Ubuntu and Windows](https://github.com/vixttha/schedule-HQ/actions/runs/45786560547). The source-specific graph has [verified archive pins](https://github.com/vixttha/schedule-HQ/blob/51b01c5ed29ca7e8c3470171b3c0e837379e9c3c/archive/v0.0.0.1-pins.json); this evidence predates the homepage publication. See the latest CI for the actual candidate revision. The historical publication remains pinned in [publication record](publication/v0.0.0.1.json). Live task execution, exclusive lease enforcement, same-conversation delivery, independent acceptance and production readiness have not been established. The .2 architecture is preserved at [the qualified merge](https://github.com/vixttha/schedule-HQ/commit/1d2028fed6ed731432fd6d8670ddb9f3e4e5a5c8).
 
 ## Independent engineering tools
 
@@ -67,3 +67,16 @@ This candidate preserves the published .1 foundation. It is not a GitHub Release
 [Canonical schedule](config/schedule.json), [dependency lock](config/dependencies.lock.json), [approved decisions](docs/decisions/v0.0.0.2.md), [migration contract](docs/migrations/v0.0.0.2.md). Legacy root paths are retained for compatibility.
 
 [Offline defensive contracts](docs/architecture/contracts.md) cover authority decisions, duplicate reporting, ambiguous-write recovery, UTC slots, privacy projection and portable paths. No live host enforcement is claimed.
+
+## Execution evidence candidate
+
+[Private local reference history](docs/architecture/private-history.md), [execution boundaries](docs/architecture/v0.0.0.3-execution.md), [approved stack](docs/decisions/v0.0.0.3-stack.md), [storage evaluation](docs/decisions/v0.0.0.3-storage.md), [synthetic execution example](dashboard/execution-example.html). The reference is bounded and private; the template remains disabled. No actual scheduler, delivery, shared database, exclusive host lease or independent acceptance is established.
+
+Check the generated sample and synthetic workload:
+
+```sh
+python tools/render_history.py --check
+python tools/qualify_workload.py --output workload-receipt.json
+```
+
+The workload writes only synthetic temporary private directories and aggregate test results. Keep real history outside the worktree and never upload private history. SQL is evaluated only; PostgreSQL/Supabase remain optional candidates. The separate [README smoke specification](docs/architecture/readme-smoke.json) checks the documented first action in a fresh exact checkout.

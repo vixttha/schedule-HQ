@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "python",
+    "tools/check.py"
+  ],
+  "expected": {
+    "exit": 0,
+    "contains": "PASS: strict offline template and receipt contract",
+    "stream": "stdout"
+  },
+  "timeout": 60
+}

@@ -33,7 +33,8 @@ jobs:
         run: |
           set -euo pipefail
           git worktree add --detach "$RUNNER_TEMP/schedule-rollback" 1fe825f284aa36e30b31f8f7a927b3942d58b9c5
-          (cd "$RUNNER_TEMP/schedule-rollback" && python tools/check.py && python -m unittest discover -s tests -v && python tools/verify_publication.py)
+          (cd "$RUNNER_TEMP/schedule-rollback" && python -B tools/check.py && python -B -m unittest discover -s tests -v && python -B tools/verify_publication.py)
+          test -z "$(git -C "$RUNNER_TEMP/schedule-rollback" status --porcelain)"
           git worktree remove "$RUNNER_TEMP/schedule-rollback"
   reader:
     if: github.event.repository.visibility == 'public' && github.event.repository.private == false

@@ -3,11 +3,11 @@
   "active": {
     "issue": 2,
     "version": "v0.0.0.2",
-    "phase": "Worker",
-    "next_action": "Owner-approved options 1–14; bounded architecture work, one issue #2; no integration. Approval https://github.com/vixttha/schedule-HQ/issues/2#issuecomment-7188021443",
-    "fix_sha": null,
-    "candidate_sha": null,
-    "pull_request": null,
+    "phase": "Validate",
+    "next_action": "Verify exact source and proposed merge of PR #3 with public runner proof; no integration.",
+    "fix_sha": "ab6235f64c45c3739bcd2b138da0824e5082e8ef",
+    "candidate_sha": "ab6235f64c45c3739bcd2b138da0824e5082e8ef",
+    "pull_request": 3,
     "evidence": []
   },
   "history": [

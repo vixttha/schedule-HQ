@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "project": "vixttha/schedule-HQ",
+  "version": "v0.0.0.2",
+  "source": "ab6235f64c45c3739bcd2b138da0824e5082e8ef",
+  "tested_archive_branch_sha": "b501ed92992bbda0d95bd64d2c0827cab0bb0aa2",
+  "producer": "0.9.109",
+  "graph_nodes": 43,
+  "graph_edges": 65,
+  "features": 7,
+  "graph_sha256": "1fa5fb8c473fe95e52938f7a960825bf3319413079fadfd2a1c3462c094498f6",
+  "receipt_sha256": "95939a3cd800a6e5bb93aabd3374d4c0164dd3f3b52145ee7e040be9dfe0377f",
+  "archive_sha256": "bb5c1db37d370f15b0f2d6a85a8f327035ee70a46a8dc929854229658cbb8146",
+  "artifact_sha256": "3025b47191803cd2ca8e49c305b07f07376b6b949b95f12805ec7773940e976f",
+  "run": "https://github.com/vixttha/schedule-HQ/actions/runs/45792806183/attempts/1",
+  "artifact": "https://github.com/vixttha/schedule-HQ/actions/runs/45792806183/artifacts/15102763847",
+  "artifact_expires_at": "2027-02-24T09:31:46Z",
+  "artifact_content_verified": true,
+  "scope": "seven offline feature relationships; not complete product or live host acceptance",
+  "archive_bytes_storage": "retained artifact, not committed; durable storage outstanding"
+}

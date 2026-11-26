@@ -3,21 +3,12 @@
   "active": {
     "issue": 4,
     "version": "v0.0.0.3",
-    "phase": "Internal Auditor",
-    "next_action": "Exact source and proposed merge 14/14 public jobs green; 12 source/PR ZIPs and exact 20-feature graph ZIP validated; catalog and permanent graph preservation verified. Same-session mechanical review only. Genuine host scheduler lease, delivery, durable shared persistence, real rename and independent review remain unqualified. Additional direct reconciliation cross-slot adversarial test and acknowledgment-history scope must be assessed. No merge/closure or live activation; await applicable acceptance or explicit owner disposition.",
-    "fix_sha": "be42c3df5280ef09b8d7167d2da9b8dc2a14606d",
-    "candidate_sha": "be42c3df5280ef09b8d7167d2da9b8dc2a14606d",
-    "pull_request": 5,
-    "evidence": [
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45800491371/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45800491339/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45800709337/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45800709252/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45801645466/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45801524739/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45801869623/attempts/1",
-      "https://github.com/vixttha/schedule-HQ/actions/runs/45801736403/attempts/1"
-    ]
+    "phase": "Worker",
+    "next_action": "Regression-first direct reconciliation cross-slot invariant and all-history acknowledgment uniqueness; requalify candidate before applicable acceptance.",
+    "fix_sha": null,
+    "candidate_sha": null,
+    "pull_request": null,
+    "evidence": []
   },
   "history": [
     {
@@ -77,6 +68,30 @@
       "disposition": "integrated",
       "decision": "Owner-authorized offline architecture integration and closure; actual main public-runner 4/4 pass. Independent review, live host enforcement, live rename and external smoke remain follow-ups. No release or activation.",
       "merged_sha": "1d2028fed6ed731432fd6d8670ddb9f3e4e5a5c8"
+    },
+    {
+      "handoff": {
+        "issue": 4,
+        "version": "v0.0.0.3",
+        "phase": "Internal Auditor",
+        "next_action": "Exact source and proposed merge 14/14 public jobs green; 12 source/PR ZIPs and exact 20-feature graph ZIP validated; catalog and permanent graph preservation verified. Same-session mechanical review only. Genuine host scheduler lease, delivery, durable shared persistence, real rename and independent review remain unqualified. Additional direct reconciliation cross-slot adversarial test and acknowledgment-history scope must be assessed. No merge/closure or live activation; await applicable acceptance or explicit owner disposition.",
+        "fix_sha": "be42c3df5280ef09b8d7167d2da9b8dc2a14606d",
+        "candidate_sha": "be42c3df5280ef09b8d7167d2da9b8dc2a14606d",
+        "pull_request": 5,
+        "evidence": [
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45800491371/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45800491339/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45800709337/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45800709252/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45801645466/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45801524739/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45801869623/attempts/1",
+          "https://github.com/vixttha/schedule-HQ/actions/runs/45801736403/attempts/1"
+        ]
+      },
+      "disposition": "rework",
+      "decision": "Owner requested finish .3; repair two recorded audit findings within same issue; no lease, live activation or gate waiver asserted.",
+      "merged_sha": null
     }
   ]
 }

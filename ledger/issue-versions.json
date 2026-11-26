@@ -1,5 +1,17 @@
 {
   "schema_version": 1,
   "repository": "vixttha/schedule-HQ",
-  "issues": []
+  "issues": [
+    {
+      "issue": 1,
+      "version": "v0.0.0.1",
+      "state": "assigned",
+      "acceptance": [
+        "Install independent, exact-source VIB, Veraphify and Provenistem branches; preserve main and license notices.",
+        "Create portable five-task template with one authorized writer, four read-only monitors, same-conversation delivery, no delegation and exact-revision evidence.",
+        "Qualify template, catalog and evidence graph on standard free GitHub-hosted runners; distinguish mechanical tests from genuine trial and owner acceptance.",
+        "No automatic schedule activation, deployment, integration or release."
+      ]
+    }
+  ]
 }

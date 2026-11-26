@@ -1,0 +1,3 @@
+# Schedule HQ checkpoint v0.0.0.1
+
+Issue [#1](https://github.com/vixttha/schedule-HQ/issues/1) is permanently assigned. Initial template candidate [e0f9e7a](https://github.com/vixttha/schedule-HQ/commit/e0f9e7acab71efa71fd4898625360966a5fa08a3). [Public validation run](https://github.com/vixttha/schedule-HQ/actions/runs/45786560547). Canonical VIB active slot intentionally remains empty: no persistent remote actor lease or formal Worker→Validate transition is claimed. Existing VIB upstream workflow is untouched. Next: qualify adopter catalog, graph and package integrity, then Head can authorize a formal claim with a verifiable owner lane. No main merge, publication or schedule changes.

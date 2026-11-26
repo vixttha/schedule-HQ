@@ -62,3 +62,27 @@ class Adoption(unittest.TestCase):
     def test_install_refuses_existing_directory(self):
         p=self.plan();(self.repo/".schedule-hq").mkdir()
         with self.assertRaises(ValueError):install(self.repo,p)
+
+    def test_private_input_and_symlink_rejected(self):
+        p=self.plan()
+        with self.assertRaises(ValueError):self.plan(repository="fixture/test-repo\nprivate-token")
+        self.assertNotIn(b"conversation_id",p["installation.json"])
+        self.assertNotIn(b"task_token",p["installation.json"])
+        sentinel=self.repo/"README.md"
+        dest=self.repo/".schedule-hq"
+        try:dest.symlink_to(sentinel)
+        except OSError:
+            self.assertEqual(sentinel.read_text(),"fixture")
+            return
+        with self.assertRaises(ValueError):install(self.repo,p)
+        self.assertEqual(sentinel.read_text(),"fixture")
+    def test_no_write_in_development_pilot(self):
+        p=self.plan();text=p["prompts/development.md"].decode()
+        self.assertIn("READ-ONLY PILOT",text)
+        self.assertIn("do not implement, publish, claim or transfer",text)
+        self.assertNotIn("one reversible fix",text)
+    def test_no_destructive_rollback_over_existing_backup(self):
+        p=self.plan();install(self.repo,p)
+        (self.repo/".schedule-hq-removed").mkdir()
+        with self.assertRaises(ValueError):uninstall(self.repo,p,apply=True)
+        self.assertTrue((self.repo/".schedule-hq").exists())

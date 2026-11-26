@@ -3,11 +3,11 @@
   "active": {
     "issue": 4,
     "version": "v0.0.0.3",
-    "phase": "Worker",
-    "next_action": "Regression-first direct reconciliation cross-slot invariant and all-history acknowledgment uniqueness; requalify candidate before applicable acceptance.",
-    "fix_sha": null,
-    "candidate_sha": null,
-    "pull_request": null,
+    "phase": "Validate",
+    "next_action": "Both audit defects repaired; verify red/green, current source and PR exact checkout, preserved archives and catalog before handoff.",
+    "fix_sha": "68ef756efb5c723d1c85eff3241ec91b5e59e271",
+    "candidate_sha": "68ef756efb5c723d1c85eff3241ec91b5e59e271",
+    "pull_request": 5,
     "evidence": []
   },
   "history": [

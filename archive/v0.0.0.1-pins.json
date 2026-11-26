@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "project": "vixttha/schedule-HQ",
+  "version": "v0.0.0.1",
+  "source": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
+  "veraphify_source": "66e822b56528c5f3e7b7730709d4b472ae2d5f1e",
+  "tested_archive_branch_sha": "463c0ff4da13462b2e15141b90df26a39e52c994",
+  "producer": "0.9.109",
+  "graph_nodes": 18,
+  "graph_edges": 23,
+  "graph_sha256": "878019f1ed6721a9360044568df04745d5f676c9ba0e3fbe55ebc136fe419e0f",
+  "receipt_sha256": "fca1ddc59bfba486c69b5a6f9a684925f30fb8c6afef3a1d363be98691d8c869",
+  "archive_sha256": "b1e428a4b43cc8953922bfca5c5041debb8a8aa251519c535ac2418dfb027478",
+  "artifact_sha256": "9ee12f2bb81d49cd9be6aa270ccf213ccdc91bc88a9901dd7991d5533624eed6",
+  "run": "https://github.com/vixttha/schedule-HQ/actions/runs/45787326454/attempts/1",
+  "artifact": "https://github.com/vixttha/schedule-HQ/actions/runs/45787326454/artifacts/15101520309",
+  "artifact_expires_at": "2027-02-24T08:55:43Z",
+  "artifact_content_verified": true,
+  "archive_bytes_storage": "GitHub Actions artifact; not committed",
+  "citations": {
+    "single-writer": "tools/check.py:7",
+    "same-conversation": "tools/check.py:9",
+    "disabled-template": "tools/check.py:10"
+  },
+  "acceptance": "Mechanical exact-candidate graph only; no live scheduler/owner acceptance"
+}

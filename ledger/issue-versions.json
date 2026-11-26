@@ -12,6 +12,17 @@
         "Qualify template, catalog and evidence graph on standard free GitHub-hosted runners; distinguish mechanical tests from genuine trial and owner acceptance.",
         "No automatic schedule activation, deployment, integration or release."
       ]
+    },
+    {
+      "issue": 2,
+      "version": "v0.0.0.2",
+      "state": "assigned",
+      "acceptance": [
+        "Freeze exact v0.0.0.1 revisions, complete file inventory and outstanding evidence without rewriting prior assignment.",
+        "Approve folder ownership, path map, stable entrypoints, schema evolution and rollback before moving runtime code.",
+        "Define regression gates for contract, migration, provenance, concurrency, scheduler behavior and privacy; qualify planning on free public runners.",
+        "No main merge, live activation or release; independent and owner acceptance remain separate."
+      ]
     }
   ]
 }

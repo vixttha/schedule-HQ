@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python tools/checkpoint.py check
-      - name: Verify installed package bytes and fresh state
+      - name: Verify installed package bytes and historical assignments
         run: |
           python - <<'PY'
           import hashlib, json
@@ -27,8 +27,8 @@ jobs:
           assert m['target_repository'].lower()=='vixttha/schedule-hq'
           assert m['enforcement']=='disabled'
           l=json.loads(Path('ledger/issue-versions.json').read_text())
-          assert [(r['issue'],r['version']) for r in l['issues']]==[(1,'v0.0.0.1')]
+          assert {1:'v0.0.0.1',2:'v0.0.0.2'}.items() <= {r['issue']:r['version'] for r in l['issues']}.items()
           h=json.loads(Path('ledger/handoff.json').read_text())
           assert h['active'] is None
-          print('PASS: all pinned package hashes, fresh assigned issue, no active lease')
+          print('PASS: all pinned package hashes, preserved historical assignments, no active lease')
           PY

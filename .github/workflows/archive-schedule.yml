@@ -1,0 +1,55 @@
+name: Archive Schedule HQ exact candidate
+on:
+  push:
+    branches: [Veraphify]
+    paths: [".github/workflows/archive-schedule.yml", "manifests/**"]
+permissions:
+  contents: read
+jobs:
+  graph:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: vixttha/schedule-HQ
+          ref: e0f9e7acab71efa71fd4898625360966a5fa08a3
+          path: product
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: vixttha/Blender-Agent-Refinement-Toolkit
+          ref: 6af3c2025be3f51e02dca4e4502088c526aae6d1
+          path: graphify-kit
+          persist-credentials: false
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version: '24.22.3'
+      - name: Produce graph and verify archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C product rev-parse HEAD)" = 'e0f9e7acab71efa71fd4898625360966a5fa08a3'
+          kit="$PWD/graphify-kit/versions/v0.0.8"
+          python -m pip install --require-hashes --no-deps --only-binary=:all: -r "$kit/requirements.txt"
+          python -m pip check
+          work="$RUNNER_TEMP/schedule-evidence"
+          mkdir -p "$work"
+          (cd product && GRAPHIFY_QUERY_LOG_DISABLE=1 PYTHONHASHSEED=0 python "$kit/evidence_map.py" "$GITHUB_WORKSPACE/manifests/v0.0.0.1.json" "$work/graph")
+          node veraphifiy.mjs import --archive "$work/archive" --project vixttha/schedule-HQ --version v0.0.0.1 --source 'e0f9e7acab71efa71fd4898625360966a5fa08a3' --checkout product --evidence "$work/graph" > "$work/pins.json"
+          digest="$(python -c 'import json,sys;print(json.load(open(sys.argv[1]))["archive_sha256"])' "$work/pins.json")"
+          node veraphifiy.mjs verify --archive "$work/archive" --project vixttha/schedule-HQ --version v0.0.0.1 --source 'e0f9e7acab71efa71fd4898625360966a5fa08a3' --archive-sha256 "$digest" | tee "$work/verification.json"
+          for f in single-writer same-conversation disabled-template; do
+            node veraphifiy.mjs lookup --archive "$work/archive" --project vixttha/schedule-HQ --version v0.0.0.1 --source 'e0f9e7acab71efa71fd4898625360966a5fa08a3' --archive-sha256 "$digest" --feature "feature:$f" > "$work/$f.json"
+          done
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: schedule-hq-v0.0.0.1-graph
+          path: ${{ runner.temp }}/schedule-evidence
+          if-no-files-found: error

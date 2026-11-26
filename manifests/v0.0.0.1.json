@@ -1,0 +1,77 @@
+{
+  "repository": "vixttha/schedule-HQ",
+  "source_commit": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
+  "title": "Schedule HQ v0.0.0.1 task contract",
+  "source_files": [
+    "tools/check.py",
+    "tests/test_contract.py"
+  ],
+  "features": [
+    {
+      "id": "single-writer",
+      "label": "Single mutation lane",
+      "documented_in": [
+        {
+          "path": "WORKFLOW.md",
+          "anchor": "One authorized mutation lane; all other scheduled tasks read-only."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "tools/check.py",
+          "anchor": "single writer required"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_contract.py",
+          "anchor": "def test_competing_writer(self):"
+        }
+      ]
+    },
+    {
+      "id": "same-conversation",
+      "label": "Existing conversation binding",
+      "documented_in": [
+        {
+          "path": "WORKFLOW.md",
+          "anchor": "Report material changes only to the existing associated conversation"
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "tools/check.py",
+          "anchor": "conversation binding required"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_contract.py",
+          "anchor": "def test_wrong_conversation(self):"
+        }
+      ]
+    },
+    {
+      "id": "disabled-template",
+      "label": "Disabled by default",
+      "documented_in": [
+        {
+          "path": "WORKFLOW.md",
+          "anchor": "No automatic activation."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "tools/check.py",
+          "anchor": "template must remain disabled"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_contract.py",
+          "anchor": "def test_auto_enable(self):"
+        }
+      ]
+    }
+  ]
+}

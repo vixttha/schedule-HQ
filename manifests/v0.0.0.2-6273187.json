@@ -1,0 +1,301 @@
+{
+  "repository": "vixttha/schedule-HQ",
+  "source_commit": "62731879202e145c32ce4517f693f7568f5e20d1",
+  "title": "Schedule HQ .2 qualification candidate — ten offline contracts",
+  "source_files": [
+    "src/schedule_hq/policy/authority.py",
+    "tests/test_policy.py",
+    "src/schedule_hq/policy/reporting.py",
+    "src/schedule_hq/policy/recovery.py",
+    "src/schedule_hq/policy/scheduling.py",
+    "src/schedule_hq/evidence/public.py",
+    "src/schedule_hq/adapters/capabilities.py",
+    "src/schedule_hq/contracts/paths.py",
+    "tests/test_portability.py",
+    "tests/test_qualification.py",
+    "src/schedule_hq/contracts/identity.py",
+    "tools/qualify_schema.py"
+  ],
+  "features": [
+    {
+      "id": "authority",
+      "label": "Exclusive publication decision",
+      "documented_in": [
+        {
+          "path": "prompts/roles/development.md",
+          "anchor": "Recheck exclusive ownership and expected ref immediately before publication; no blind retry of uncertain writes."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/policy/authority.py",
+          "anchor": "def may_publish(*, task, authorized, authenticated_actor, lease, repository_id, issue, head, fence, now, competing, atomic_supported):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_allowed(self): self.assertTrue(may_publish(**self.args))"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/policy/authority.py",
+          "anchor": "\"\"\"Pure fail-closed decision. Caller must independently authenticate and enforce atomic CAS.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "dedup",
+      "label": "Material-change fingerprint",
+      "documented_in": [
+        {
+          "path": "prompts/roles/handoff.md",
+          "anchor": "Escalate only changed blockers; do not claim the lane."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/policy/reporting.py",
+          "anchor": "def fingerprint(receipt):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_dedup_time(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/policy/reporting.py",
+          "anchor": "\"\"\"Deduplication intent; only confirmed delivery can advance a durable host cursor.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "recovery",
+      "label": "Ambiguous publication recovery",
+      "documented_in": [
+        {
+          "path": "prompts/roles/development.md",
+          "anchor": "Recheck exclusive ownership and expected ref immediately before publication; no blind retry of uncertain writes."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/policy/recovery.py",
+          "anchor": "def recovery(*, before, expected, observed, observation_verified, intent_verified, same_fence, atomic_supported):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_recovery(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/policy/recovery.py",
+          "anchor": "\"\"\"No blind retries after ambiguous writes; observe a durable intent first.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "utc-slots",
+      "label": "Nominal UTC schedule",
+      "documented_in": [
+        {
+          "path": "config/schedule.json",
+          "anchor": "\"timezone\": \"Etc/UTC\","
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/policy/scheduling.py",
+          "anchor": "def slots(task,start,end):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_slots(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/policy/scheduling.py",
+          "anchor": "\"\"\"Nominal UTC slots only; no scheduler invocation or host-delivery promise.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "label": "Public summary allowlist",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Contracts parse and validate input. Policy consumes validated facts; no API calls or credentials. Evidence exposes only fixed public fields (free text, proof URLs, SHAs, identities and raw logs excluded). Adapters are capability declarations, not implementations. CLI and wrappers call contracts. Dashboard is generated, not authoritative."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/evidence/public.py",
+          "anchor": "def public_summary(receipt):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_public_projection(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/evidence/public.py",
+          "anchor": "\"\"\"Allowlisted public projection; deliberately drops arbitrary text and all external URLs.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "capability",
+      "label": "Explicit adapter capability",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Contracts parse and validate input. Policy consumes validated facts; no API calls or credentials. Evidence exposes only fixed public fields (free text, proof URLs, SHAs, identities and raw logs excluded). Adapters are capability declarations, not implementations. CLI and wrappers call contracts. Dashboard is generated, not authoritative."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/adapters/capabilities.py",
+          "anchor": "def available(capabilities,name):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_policy.py",
+          "anchor": "def test_adapter(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/adapters/capabilities.py",
+          "anchor": "\"\"\"No adapter is installed. Capabilities must be verified by the actual host.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "paths",
+      "label": "Portable migration paths",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Historical pins identify frozen sources; never replace them with moving branch tips. No schema v2 until a breaking wire change is approved. No new live scheduler integrations in .2."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/contracts/paths.py",
+          "anchor": "def portable(path):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_portability.py",
+          "anchor": "def test_unsafe_paths(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/contracts/paths.py",
+          "anchor": "\"\"\"Portable paths and confined migration reads.\"\"\""
+        }
+      ]
+    },
+    {
+      "id": "private-ingress",
+      "label": "Bounded private ingress",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Qualification refinement: nominal schedule and observed execution are separate; a host may start early."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/evidence/public.py",
+          "anchor": "def public_receipt_from_json(payload):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_qualification.py",
+          "anchor": "def test_private_fields_dropped(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/evidence/public.py",
+          "anchor": "def public_receipt_from_json(payload):"
+        }
+      ]
+    },
+    {
+      "id": "stable-identity",
+      "label": "Stable repository identity",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Qualification refinement: nominal schedule and observed execution are separate; a host may start early."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "src/schedule_hq/contracts/identity.py",
+          "anchor": "def same_repository(expected_id, observed, *, observation_verified):"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tests/test_qualification.py",
+          "anchor": "def test_same_id_renamed(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "src/schedule_hq/contracts/identity.py",
+          "anchor": "def same_repository(expected_id, observed, *, observation_verified):"
+        }
+      ]
+    },
+    {
+      "id": "schema-engine",
+      "label": "Separate Draft 2020-12 qualification",
+      "documented_in": [
+        {
+          "path": "docs/architecture/contracts.md",
+          "anchor": "Qualification refinement: nominal schedule and observed execution are separate; a host may start early."
+        }
+      ],
+      "implemented_in": [
+        {
+          "path": "tools/qualify_schema.py",
+          "anchor": "def main():"
+        }
+      ],
+      "tested_by": [
+        {
+          "path": "tools/qualify_schema.py",
+          "anchor": "Draft202012Validator.check_schema(schema)"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "tools/qualify_schema.py",
+          "anchor": "def main():"
+        }
+      ]
+    }
+  ]
+}

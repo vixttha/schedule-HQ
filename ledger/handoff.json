@@ -1,6 +1,15 @@
 {
   "schema_version": 1,
-  "active": null,
+  "active": {
+    "issue": 4,
+    "version": "v0.0.0.3",
+    "phase": "Worker",
+    "next_action": "Owner authorized moving to .3; first bounded task: design durable receipt history, dedup/delivery cursor, host capability and regression gates. No deployment or merge; explicit scope proposal, no runtime adoption.",
+    "fix_sha": null,
+    "candidate_sha": null,
+    "pull_request": null,
+    "evidence": []
+  },
   "history": [
     {
       "handoff": {

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "project": "vixttha/schedule-HQ",
+  "version": "v0.0.0.2",
+  "source": "62731879202e145c32ce4517f693f7568f5e20d1",
+  "tested_archive_branch_sha": "0d84c36b6eb4077d7f75c35b3a238752e5dca4dd",
+  "producer": "0.9.109",
+  "graph_nodes": 61,
+  "graph_edges": 92,
+  "features": 10,
+  "graph_sha256": "1070b570e2ac18de10c7533ffef14d1e44f1779b9cd432ec2082264c50b485b6",
+  "receipt_sha256": "97291f5adc575ea23a088c358befb94ad2e421f40b66975b2c19a951b5289561",
+  "archive_sha256": "b3fe0f1afc2115bb5fb0f2b2e37a55c044253d2a8c97c73e21e5adfb96400ea6",
+  "artifact_sha256": "5313a4a61892783a5115163c0fe5ab11b062b062ab5945bd95661e94c18b30bc",
+  "git_blob_sha": "da3b4a97e282c2b8c846292f4b2bf7cc273d5aef",
+  "run": "https://github.com/vixttha/schedule-HQ/actions/runs/45795484450",
+  "artifact": "https://github.com/vixttha/schedule-HQ/actions/runs/45795484450/artifacts/15105060994",
+  "artifact_content_verified": true,
+  "archive_bytes_storage": "pending exact Git blob readback",
+  "scope": "ten offline feature relationships; not independent acceptance"
+}

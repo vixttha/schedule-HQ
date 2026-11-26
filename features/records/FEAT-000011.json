@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "FEAT-000011",
+  "title": "Durable private execution history",
+  "summary": "Persist private local observations, delivery cursors and fenced write intents with bounded replay and restore.",
+  "kind": "capability",
+  "lifecycle_status": "in_progress",
+  "implementation_status": "in_progress",
+  "idea_ids": [
+    "IDEA-000011"
+  ],
+  "acceptance_criteria": [
+    "Private storage rejects conflicting run identities and preserves monotonic cursors.",
+    "Restore and replay pass cross-platform tests; actual host storage and delivery require separate qualification."
+  ],
+  "testing": {
+    "status": "untested"
+  },
+  "evidence": [
+    {
+      "kind": "test",
+      "claim": "Offline reference implementation and synthetic workload qualification only",
+      "source_sha": "be42c3df5280ef09b8d7167d2da9b8dc2a14606d",
+      "source_path": "src/schedule_hq/history/store.py",
+      "receipt": "https://github.com/vixttha/schedule-HQ/actions/runs/45800491371/attempts/1"
+    }
+  ],
+  "release_membership": "NOT_ASSERTED"
+}

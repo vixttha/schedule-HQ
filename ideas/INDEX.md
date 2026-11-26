@@ -14,3 +14,4 @@
 | IDEA-000008 | Independent portable ecosystem tools | captured | planned |
 | IDEA-000009 | Rename-safe project identity | captured | planned |
 | IDEA-000010 | Release stop and escalation rules | captured | planned |
+| IDEA-000011 | Durable private execution history | exploring | in\_progress |

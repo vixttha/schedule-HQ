@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "id": "IDEA-000011",
+  "title": "Durable private execution history",
+  "summary": "Persist private local observations, delivery cursors and fenced write intents with bounded replay and restore.",
+  "kind": "architecture",
+  "origin": {
+    "created_by": "joint",
+    "source": "Owner-authorized issue #4 roadmap"
+  },
+  "lifecycle_status": "exploring",
+  "implementation_status": "in_progress",
+  "testing": {
+    "status": "untested"
+  },
+  "importance": "critical",
+  "complexity": "high",
+  "categories": [
+    "schedule",
+    "engineering"
+  ],
+  "benefits": [
+    "Durable local evidence",
+    "Conservative replay and recovery"
+  ],
+  "risks": [
+    "Host lease, delivery and shared persistence remain unqualified"
+  ],
+  "related_ideas": [
+    "IDEA-000004",
+    "IDEA-000005"
+  ],
+  "evidence": [
+    {
+      "relation": "context",
+      "claim": "Offline reference candidate, not live acceptance",
+      "repository": "vixttha/schedule-HQ",
+      "commit": "be42c3df5280ef09b8d7167d2da9b8dc2a14606d",
+      "path": "src/schedule_hq/history/store.py"
+    }
+  ]
+}

@@ -14,3 +14,4 @@
 | FEAT-000008 | Independent portable ecosystem tools | in\_progress | in\_progress |
 | FEAT-000009 | Rename-safe project identity | in\_progress | in\_progress |
 | FEAT-000010 | Release stop and escalation rules | in\_progress | in\_progress |
+| FEAT-000011 | Durable private execution history | in\_progress | in\_progress |

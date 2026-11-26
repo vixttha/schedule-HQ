@@ -37,6 +37,13 @@
       "source_sha": "62731879202e145c32ce4517f693f7568f5e20d1",
       "source_path": ".github/workflows/verify-layout-plan.yml",
       "receipt": "https://github.com/vixttha/schedule-HQ/actions/runs/45794708618/attempts/1"
+    },
+    {
+      "kind": "test",
+      "claim": "Public source and proposed-merge test jobs",
+      "source_sha": "be42c3df5280ef09b8d7167d2da9b8dc2a14606d",
+      "source_path": "README.md",
+      "receipt": "https://github.com/vixttha/schedule-HQ/actions/runs/45800491371/attempts/1"
     }
   ],
   "release_membership": "NOT_ASSERTED"

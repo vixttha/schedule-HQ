@@ -4,7 +4,7 @@
     "issue": 4,
     "version": "v0.0.0.3",
     "phase": "Head",
-    "next_action": "Returned to Head for disposition, not independent auditor acceptance. Both recorded defects repaired and exact mechanical source/PR evidence green; genuine scheduler host lease, delivery, shared durability, authorized disposable rename, independent review and remaining host/browser privacy checks are NOT RUN. Owner must explicitly defer applicable missing gates for offline-only integration or obtain genuine proof. No merge, freeze, issue closure, or live activation yet.",
+    "next_action": "Owner explicitly accepts v0.0.0.3 as qualified OFFLINE execution-evidence checkpoint and authorizes merge, actual-main verification, freeze and issue #4 closure. Genuine host lease, delivery, shared durability, live rename and host-specific privacy/browser checks are deferred to a future checkpoint; independent review remains NOT RUN and is not a claim of this offline owner acceptance. No live activation, production database, GitHub Release or next version authorization. Verify actual main before closure.",
     "fix_sha": "68ef756efb5c723d1c85eff3241ec91b5e59e271",
     "candidate_sha": "68ef756efb5c723d1c85eff3241ec91b5e59e271",
     "pull_request": 5,

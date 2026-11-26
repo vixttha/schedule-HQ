@@ -1,0 +1,3 @@
+# Schedule HQ .2 qualification candidate
+
+Preserve all 10 existing ideas, features and earlier evidence. Added current exact-candidate offline mechanical receipts; no lifecycle promotion, release membership or owner acceptance. Source 62731879202e145c32ce4517f693f7568f5e20d1; [source run](https://github.com/vixttha/schedule-HQ/actions/runs/45794708618/attempts/1); [PR run](https://github.com/vixttha/schedule-HQ/actions/runs/45794715404). 58 current tests per OS/checkout, 28 separate schema-engine cases per checkout and 5 rollback tests per OS/checkout. Actual host enforcement and live rename remain unqualified.

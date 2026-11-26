@@ -30,6 +30,13 @@
       "source_sha": "ab6235f64c45c3739bcd2b138da0824e5082e8ef",
       "source_path": "src/schedule_hq/adapters/capabilities.py",
       "receipt": "https://github.com/vixttha/schedule-HQ/actions/runs/45792557636/attempts/1"
+    },
+    {
+      "kind": "test",
+      "claim": "Explicit capability tests replayed; no mandatory external service.",
+      "source_sha": "62731879202e145c32ce4517f693f7568f5e20d1",
+      "source_path": "src/schedule_hq/adapters/capabilities.py",
+      "receipt": "https://github.com/vixttha/schedule-HQ/actions/runs/45794708618/attempts/1"
     }
   ],
   "release_membership": "NOT_ASSERTED"

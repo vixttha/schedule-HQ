@@ -1,0 +1,23 @@
+{
+  "vib": {
+    "source": "vixttha/Version-Issues-Hub",
+    "sha": "26e9fe8c019a33c5f84f77a37da70925505204e3",
+    "version": "v0.0.0.36 engineering",
+    "branch": "Version-Issues-Hub",
+    "installed_sha": "164838110fe5a28582d0625a4a92ba89e305c0dc"
+  },
+  "veraphify": {
+    "source": "vixttha/Veraphify",
+    "sha": "66e822b56528c5f3e7b7730709d4b472ae2d5f1e",
+    "version": "v0.0.9 preview",
+    "branch": "Veraphify",
+    "installed_sha": "7717843586ae5c5be85f0599caafb2cf25d758bc"
+  },
+  "provenistem": {
+    "source": "vixttha/Provenistem",
+    "sha": "f676059bf15e466d18a0d49c317920c8c1160418",
+    "version": "v0.0.2 + merged repairs",
+    "branch": "Provenistem",
+    "installed_sha": "f37010335490d13f0566dc09d03cd7644a2f2158"
+  }
+}

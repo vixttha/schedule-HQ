@@ -1,7 +1,7 @@
 name: Verify frozen baseline and proposed layout
 on:
   push:
-    branches: [plan/checkpoint-v0.0.0.2, main]
+    branches: ['plan/checkpoint-v*', main]
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened, edited]
@@ -36,6 +36,10 @@ jobs:
           (cd "$RUNNER_TEMP/schedule-rollback" && python -B tools/check.py && python -B -m unittest discover -s tests -v && python -B tools/verify_publication.py)
           test -z "$(git -C "$RUNNER_TEMP/schedule-rollback" status --porcelain)"
           git worktree remove "$RUNNER_TEMP/schedule-rollback"
+          git worktree add --detach "$RUNNER_TEMP/schedule-rollback2" 1d2028fed6ed731432fd6d8670ddb9f3e4e5a5c8
+          (cd "$RUNNER_TEMP/schedule-rollback2" && python -B tools/check.py && python -B -m unittest discover -s tests -v && python -B tools/generate_views.py --check)
+          test -z "$(git -C "$RUNNER_TEMP/schedule-rollback2" status --porcelain)"
+          git worktree remove "$RUNNER_TEMP/schedule-rollback2"
   reader:
     if: github.event.repository.visibility == 'public' && github.event.repository.private == false
     runs-on: ubuntu-latest

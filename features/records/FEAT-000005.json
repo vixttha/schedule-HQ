@@ -44,6 +44,13 @@
       "source_sha": "be42c3df5280ef09b8d7167d2da9b8dc2a14606d",
       "source_path": "src/schedule_hq/history/reconcile.py",
       "receipt": "https://github.com/vixttha/schedule-HQ/actions/runs/45800491371/attempts/1"
+    },
+    {
+      "kind": "test",
+      "claim": "Direct reconciliation now rejects contradictory nominal slots for the same run, including outside the requested window.",
+      "source_sha": "68ef756efb5c723d1c85eff3241ec91b5e59e271",
+      "source_path": "src/schedule_hq/history/reconcile.py",
+      "receipt": "https://github.com/vixttha/schedule-HQ/actions/runs/45815052657/attempts/1"
     }
   ],
   "release_membership": "NOT_ASSERTED"

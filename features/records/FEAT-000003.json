@@ -44,6 +44,13 @@
       "source_sha": "be42c3df5280ef09b8d7167d2da9b8dc2a14606d",
       "source_path": "src/schedule_hq/history/store.py",
       "receipt": "https://github.com/vixttha/schedule-HQ/actions/runs/45800491371/attempts/1"
+    },
+    {
+      "kind": "test",
+      "claim": "Historical acknowledgment replay and reuse are checked across tasks, restart and restore; no actual host delivery asserted.",
+      "source_sha": "68ef756efb5c723d1c85eff3241ec91b5e59e271",
+      "source_path": "src/schedule_hq/history/store.py",
+      "receipt": "https://github.com/vixttha/schedule-HQ/actions/runs/45815052657/attempts/1"
     }
   ],
   "release_membership": "NOT_ASSERTED"

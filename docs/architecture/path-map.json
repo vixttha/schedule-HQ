@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "checkpoint": "v0.0.0.2",
+  "issue": 2,
+  "status": "proposed_pending_owner_approval",
+  "freeze_commit": "139dc64a15a069a0a2bd570c9e50ca664f8e4cfc",
+  "source_commit": "e0f9e7acab71efa71fd4898625360966a5fa08a3",
+  "mapping": [
+    {
+      "from": "README.md",
+      "to": "README.md",
+      "action": "retain"
+    },
+    {
+      "from": "WORKFLOW.md",
+      "to": "WORKFLOW.md",
+      "action": "retain"
+    },
+    {
+      "from": "TASKS.md",
+      "to": "TASKS.md",
+      "action": "generate from prompts and config"
+    },
+    {
+      "from": "schedule.json",
+      "to": "config/schedule.json",
+      "action": "move with compatibility reader"
+    },
+    {
+      "from": "dependencies.json",
+      "to": "config/dependencies.lock.json",
+      "action": "migrate and reconcile"
+    },
+    {
+      "from": "dashboard.html",
+      "to": "dashboard/index.html",
+      "action": "move with documented compatibility link"
+    },
+    {
+      "from": "examples/receipt.json",
+      "to": "examples/receipt.json",
+      "action": "retain and schema-check"
+    },
+    {
+      "from": "tools/check.py",
+      "to": "src/schedule_hq/contracts/validation.py",
+      "action": "extract logic; retain tools/check.py wrapper"
+    },
+    {
+      "from": "tests/test_contract.py",
+      "to": "tests/contract/test_schedule.py",
+      "action": "move tests and retain behavior"
+    },
+    {
+      "from": ".github/workflows/verify-template.yml",
+      "to": ".github/workflows/verify-template.yml",
+      "action": "retain; update trigger/path contract"
+    }
+  ],
+  "allowed_new_roots": [
+    "config",
+    "schemas",
+    "prompts",
+    "src",
+    "dashboard",
+    "docs",
+    "tests"
+  ],
+  "constraints": [
+    "No production file movement before layout approval",
+    "No main writes",
+    "No mandatory database",
+    "One canonical task registry",
+    "No live scheduler activation",
+    "No new authority from generated output",
+    "Preserve compatibility and rollback"
+  ]
+}

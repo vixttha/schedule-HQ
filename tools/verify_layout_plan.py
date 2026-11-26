@@ -1,0 +1,30 @@
+"""Verify planning metadata without asserting any migration has occurred."""
+import json
+import subprocess
+from pathlib import Path, PurePosixPath
+
+ROOT = Path(__file__).resolve().parents[1]
+def git(*args):
+    return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
+
+def main():
+    freeze = json.loads((ROOT / "freeze/v0.0.0.1.json").read_text(encoding="utf-8"))
+    plan = json.loads((ROOT / "docs/architecture/path-map.json").read_text(encoding="utf-8"))
+    src = freeze["components"]["Schedule-HQ-Template"]
+    assert plan["source_commit"] == src["commit"]
+    assert plan["status"] == "proposed_pending_owner_approval"
+    mapping = plan["mapping"]
+    inventory = {f["path"]: f["blob"] for f in src["files"]}
+    assert len(mapping) == len(inventory)
+    assert {m["from"] for m in mapping} == set(inventory)
+    assert len({m["to"].casefold() for m in mapping}) == len(mapping)
+    for m in mapping:
+        p = PurePosixPath(m["to"])
+        assert not p.is_absolute() and ".." not in p.parts and "\\" not in m["to"]
+    for path, blob in inventory.items():
+        assert git("rev-parse", src["commit"] + ":" + path) == blob, path
+        assert git("rev-parse", "HEAD:" + path) == blob, path
+    print(f"PASS: {len(inventory)} frozen template paths mapped exactly once; original blobs unchanged; plan only")
+
+if __name__ == "__main__":
+    main()

@@ -52,7 +52,7 @@ The frozen template source [e0f9e7a](https://github.com/vixttha/schedule-HQ/comm
 | Version-Issues-Hub | [VIB](https://github.com/vixttha/schedule-HQ/tree/Version-Issues-Hub) |
 | Veraphify | [Veraphify](https://github.com/vixttha/schedule-HQ/tree/Veraphify) |
 | Provenistem | [Provenistem](https://github.com/vixttha/schedule-HQ/tree/Provenistem) |
-| README HQ | [Pinned reader adoption](https://github.com/vixttha/schedule-HQ/tree/ccd2785b5e513a221fc7d0a5e0b733a91fefe630) |
+| README HQ | [Pinned reader adoption](https://github.com/vixttha/schedule-HQ/tree/f1ab0fa8634ce3a6a8a83fc50c29a051d177a62e) |
 
 The [historical dependency file](dependencies.json) retains the initial installation pins; the frozen manifest identifies the qualified historical revisions. Optional tools must remain independent. GitHub is the canonical evidence source; Notion and Supabase are optional. No mandatory external service.
 

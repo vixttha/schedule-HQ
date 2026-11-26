@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "example",
+    "task_id",
+    "scheduled_at",
+    "started_at",
+    "completed_at",
+    "source_head",
+    "base_sha",
+    "proposed_merge_sha",
+    "actual_merge_sha",
+    "installed_version",
+    "classification",
+    "positives",
+    "negatives",
+    "proof_links",
+    "next_action"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "type": "integer"
+    },
+    "example": {
+      "type": "boolean"
+    },
+    "task_id": {
+      "enum": [
+        "development",
+        "handoff",
+        "verification",
+        "audit",
+        "release"
+      ]
+    },
+    "scheduled_at": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    },
+    "started_at": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    },
+    "completed_at": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    },
+    "source_head": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "base_sha": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "proposed_merge_sha": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "actual_merge_sha": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "installed_version": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "pattern": "^v(0|[1-9][0-9]*)(\\.(0|[1-9][0-9]*)){2,3}$"
+    },
+    "classification": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "BLOCKED",
+        "NOT RUN",
+        "UNVERIFIED"
+      ]
+    },
+    "positives": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      }
+    },
+    "negatives": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      }
+    },
+    "proof_links": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000,
+        "pattern": "^https://github\\.com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+/(commit/[0-9a-f]{40}|actions/runs/[1-9][0-9]*(/attempts/[1-9][0-9]*|/artifacts/[1-9][0-9]*)?)$"
+      }
+    },
+    "next_action": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "example": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "classification": {
+            "const": "NOT RUN"
+          },
+          "started_at": {
+            "type": "null"
+          },
+          "completed_at": {
+            "type": "null"
+          },
+          "proof_links": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "classification": {
+            "const": "NOT RUN"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "started_at": {
+            "type": "null"
+          },
+          "completed_at": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "classification": {
+            "const": "PASS"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "example": {
+            "const": false
+          },
+          "source_head": {
+            "type": "string"
+          },
+          "started_at": {
+            "type": "string"
+          },
+          "completed_at": {
+            "type": "string"
+          },
+          "proof_links": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "completed_at": {
+            "type": "string"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "started_at": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ]
+}

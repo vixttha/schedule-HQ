@@ -1,23 +1,25 @@
 # Reusable prompts
 
-Prepend the operating contract in WORKFLOW.md to each prompt. Replace OWNER/REPO and timezone explicitly; do not publish actual conversation identifiers. Configure existing conversation association in the scheduler; verify readback. Schedule times are nominal UTC; scheduler delays are possible.
+Generated from config/schedule.json and prompts/. Do not edit.
+
+Read live canonical OWNER/REPO before work. Follow WORKFLOW.md. Report only material changes with exact source head, base, proposed merge, actual merge, installed release, UTC and local timestamps, classification, positives, negatives, proof and one next action. Missing evidence is UNVERIFIED, not PASS. No new thread or separate agent; no automatic activation, merge, closure or release. Stop after one bounded operation or blocker. A prompt is not a lease.
 
 ## Development Loop (0 * * * *)
 
-Read live canonical OWNER/REPO. Only authorized bounded repair; inspect canonical issue, branch and exclusive lease, then one reversible fix with regressions. No claim transfer, merge, release or speculative work. Follow WORKFLOW.md. Report only changed evidence with exact source head/base/proposed merge/actual merge, installed version, UTC and local timestamp, classification, positives and negatives, one next action and unavailable tools. No new conversation or separate agent. Stop after one bounded operation or blocker. Do not infer release authorization.
+Only authorized bounded repair; inspect canonical issue, branch and exclusive lease, then one reversible fix with regressions. No claim transfer, merge, release or speculative work. Recheck exclusive ownership and expected ref immediately before publication; no blind retry of uncertain writes.
 
 ## Handoff Control (15 * * * *)
 
-Read live canonical OWNER/REPO. Inspect actual canonical handoff and candidate; identify stale or competing claims, one concrete existing Worker or owner action. Never take ownership. Follow WORKFLOW.md. Report only changed evidence with exact source head/base/proposed merge/actual merge, installed version, UTC and local timestamp, classification, positives and negatives, one next action and unavailable tools. No new conversation or separate agent. Stop after one bounded operation or blocker. Do not infer release authorization.
+Inspect actual canonical handoff and candidate; identify stale or competing claims, one concrete existing Worker or owner action. Never take ownership. Escalate only changed blockers; do not claim the lane.
 
 ## Verification Watch (30 * * * *)
 
-Read live canonical OWNER/REPO. Inspect exact-head and proposed-merge runner logs, artifacts and review threads; identify changed verification only. Follow WORKFLOW.md. Report only changed evidence with exact source head/base/proposed merge/actual merge, installed version, UTC and local timestamp, classification, positives and negatives, one next action and unavailable tools. No new conversation or separate agent. Stop after one bounded operation or blocker. Do not infer release authorization.
+Inspect exact-head and proposed-merge runner logs, artifacts and review threads; identify changed verification only. Separate runner metadata from artifact bytes and distinguish merge checkout from head.
 
 ## Audit Evidence (45 * * * *)
 
-Read live canonical OWNER/REPO. One bounded missing evidence gate per run; inspect actual artifact contents, hashes and historical scope. Never simulate independent acceptance. Follow WORKFLOW.md. Report only changed evidence with exact source head/base/proposed merge/actual merge, installed version, UTC and local timestamp, classification, positives and negatives, one next action and unavailable tools. No new conversation or separate agent. Stop after one bounded operation or blocker. Do not infer release authorization.
+One bounded missing evidence gate per run; inspect actual artifact contents, hashes and historical scope. Never simulate independent acceptance. Inspect one incomplete gate; simulated trials are not independent host trials.
 
 ## Release Control (0 */4 * * *)
 
-Read live canonical OWNER/REPO. Reconcile release gates, permanent versions, closure, owner decisions, independent trial evidence, and current release status. Stop only after verified completion. Follow WORKFLOW.md. Report only changed evidence with exact source head/base/proposed merge/actual merge, installed version, UTC and local timestamp, classification, positives and negatives, one next action and unavailable tools. No new conversation or separate agent. Stop after one bounded operation or blocker. Do not infer release authorization.
+Reconcile release gates, permanent versions, closure, owner decisions, independent trial evidence, and current release status. Stop only after verified completion. Verify all applicable gates and owner decisions; keep release on hold when evidence is absent.

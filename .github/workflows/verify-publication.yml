@@ -1,7 +1,7 @@
 name: Verify v0.0.0.1 publication
 on:
   push:
-    branches: [main, publish/v0.0.0.1]
+    branches: [publish/v0.0.0.1]
 permissions:
   contents: read
 jobs:

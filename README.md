@@ -2,7 +2,7 @@
 
 **A portable operating template for scheduled engineering tasks.**
 
-Version **v0.0.0.1** · Frozen foundation · Working project name
+Version **v0.0.0.2** · Architecture candidate · Working project name
 
 Schedule HQ organizes scheduled AI-assisted engineering work into five coordinated tasks. It keeps one conditional writer, four read-only monitors, revision-bound evidence and a single associated conversation. It is a template, not a hosted scheduler or an automatic permission system.
 
@@ -15,7 +15,7 @@ python tools/check.py
 python -m unittest discover -s tests -v
 ```
 
-The first command reports `PASS: template contract; no live scheduler execution asserted`. The second runs the five foundation regression tests. The template is disabled by default; no task, credential, database or paid runner is needed for these offline checks.
+The first command reports `PASS: strict offline template and receipt contract; no live scheduler execution asserted`. The second runs the foundation and architecture regression suites. The template is disabled by default; no task, credential, database or paid runner is needed for these offline checks.
 
 ## How it works
 
@@ -43,7 +43,7 @@ The first command reports `PASS: template contract; no live scheduler execution 
 
 ## Evidence and status
 
-The frozen template source [e0f9e7a](https://github.com/vixttha/schedule-HQ/commit/e0f9e7acab71efa71fd4898625360966a5fa08a3) passed five tests each on [Ubuntu and Windows](https://github.com/vixttha/schedule-HQ/actions/runs/45786560547). The source-specific graph has [verified archive pins](https://github.com/vixttha/schedule-HQ/blob/51b01c5ed29ca7e8c3470171b3c0e837379e9c3c/archive/v0.0.0.1-pins.json); this evidence predates the homepage publication. See the latest CI for the actual published revision. Live task execution, exclusive lease enforcement, same-conversation delivery, independent acceptance and production readiness have not been established. The next architecture checkpoint remains separate.
+The frozen template source [e0f9e7a](https://github.com/vixttha/schedule-HQ/commit/e0f9e7acab71efa71fd4898625360966a5fa08a3) passed five tests each on [Ubuntu and Windows](https://github.com/vixttha/schedule-HQ/actions/runs/45786560547). The source-specific graph has [verified archive pins](https://github.com/vixttha/schedule-HQ/blob/51b01c5ed29ca7e8c3470171b3c0e837379e9c3c/archive/v0.0.0.1-pins.json); this evidence predates the homepage publication. See the latest CI for the actual candidate revision. The historical publication remains pinned in [publication record](publication/v0.0.0.1.json). Live task execution, exclusive lease enforcement, same-conversation delivery, independent acceptance and production readiness have not been established. The next architecture checkpoint remains separate.
 
 ## Independent engineering tools
 
@@ -60,4 +60,10 @@ The [historical dependency file](dependencies.json) retains the initial installa
 
 Use standard public GitHub-hosted runners only. Report defects with a reproducible scenario, exact SHA and proof links. Never publish private prompts, task or conversation IDs, credentials or raw logs. The owner controls scope, integration and release. No standalone reuse license has been declared for Schedule HQ; request permission before redistribution. Upstream tools keep their own terms.
 
-This homepage publishes the frozen foundation, not a GitHub Release or a claim of production acceptance.
+This candidate preserves the published .1 foundation. It is not a GitHub Release or a claim of production acceptance.
+
+## Architecture candidate
+
+[Canonical schedule](config/schedule.json), [dependency lock](config/dependencies.lock.json), [approved decisions](docs/decisions/v0.0.0.2.md), [migration contract](docs/migrations/v0.0.0.2.md). Legacy root paths are retained for compatibility.
+
+[Offline defensive contracts](docs/architecture/contracts.md) cover authority decisions, duplicate reporting, ambiguous-write recovery, UTC slots, privacy projection and portable paths. No live host enforcement is claimed.

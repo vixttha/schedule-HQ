@@ -12,20 +12,26 @@
       "label": "Single mutation lane",
       "documented_in": [
         {
-          "path": "WORKFLOW.md",
-          "anchor": "One authorized mutation lane; all other scheduled tasks read-only."
+          "path": "TASKS.md",
+          "anchor": "## Development Loop (0 * * * *)"
         }
       ],
       "implemented_in": [
         {
           "path": "tools/check.py",
-          "anchor": "single writer required"
+          "anchor": "if [t[\"id\"] for t in tasks if t[\"authority\"]==\"write-if-authorized\"]!=[\"development\"]: raise ValueError(\"single writer required\")"
         }
       ],
       "tested_by": [
         {
           "path": "tests/test_contract.py",
           "anchor": "def test_competing_writer(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "schedule.json",
+          "anchor": "\"id\": \"development\","
         }
       ]
     },
@@ -34,20 +40,26 @@
       "label": "Existing conversation binding",
       "documented_in": [
         {
-          "path": "WORKFLOW.md",
-          "anchor": "Report material changes only to the existing associated conversation"
+          "path": "TASKS.md",
+          "anchor": "## Handoff Control (15 * * * *)"
         }
       ],
       "implemented_in": [
         {
           "path": "tools/check.py",
-          "anchor": "conversation binding required"
+          "anchor": "if cfg[\"conversation_binding\"]!=\"existing-associated-conversation\": raise ValueError(\"conversation binding required\")"
         }
       ],
       "tested_by": [
         {
           "path": "tests/test_contract.py",
           "anchor": "def test_wrong_conversation(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "schedule.json",
+          "anchor": "\"conversation_binding\": \"existing-associated-conversation\","
         }
       ]
     },
@@ -56,20 +68,26 @@
       "label": "Disabled by default",
       "documented_in": [
         {
-          "path": "WORKFLOW.md",
-          "anchor": "No automatic activation."
+          "path": "TASKS.md",
+          "anchor": "## Release Control (0 */4 * * *)"
         }
       ],
       "implemented_in": [
         {
           "path": "tools/check.py",
-          "anchor": "template must remain disabled"
+          "anchor": "if cfg[\"enabled\"] is not False: raise ValueError(\"template must remain disabled\")"
         }
       ],
       "tested_by": [
         {
           "path": "tests/test_contract.py",
           "anchor": "def test_auto_enable(self):"
+        }
+      ],
+      "changed_in": [
+        {
+          "path": "schedule.json",
+          "anchor": "\"enabled\": false,"
         }
       ]
     }
